@@ -1,0 +1,12 @@
+@charset "utf-8";
+
+body {
+	font-size: 12px;
+	color: #505050;
+	background: #E6EAE9;
+}
+
+a, a:hover, a:visited, a:active {
+	text-decoration: none;
+	color: #aaa ;
+}

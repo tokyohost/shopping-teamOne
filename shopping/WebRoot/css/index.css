@@ -1,0 +1,222 @@
+﻿@charset "utf-8";
+
+/* 头部 */
+header {
+	background: url(../img/wrapper-bg-colourstrip.png) repeat-x;
+	padding-top: 5px;
+	-webkit-box-shadow: 0px 2px 2px #aaa;
+	-moz-box-shadow: 0px 2px 2px #aaa;
+	box-shadow: 0px 2px 2px #aaa;
+	behavior: url(PIE.htc);
+}
+
+header nav div {
+	float: left;
+}
+
+header nav {
+	width: 100%;
+	height: 30px !important;
+	background: rgb(039, 040, 034) repeat-x;
+}
+
+/*导航*/
+#topNav {
+	position: absolute;
+	right: 0;
+	height: 30px;
+}
+
+#topNav li {
+	float: left;
+}
+
+.welcome {
+	line-height: 30px;
+	color: #aaa;
+}
+
+#topNav a {
+	display: inline-block;
+	line-height: 30px;
+	padding: 0 5px;
+}
+
+#topNav li a:hover {
+	background: #555;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	behavior: url(PIE.htc);
+}
+
+#logo {
+	width: 1000px;
+	height: 130px;
+	background: url('../img/logo.png');
+	margin: 0 auto;
+	margin-top: 30px;
+}
+
+header a,a:hover,a:visited,a:active {
+	text-decoration: none;
+	color: #aaa;
+}
+
+/* 主体 */
+#main {
+	margin-top: 50px;
+}
+
+#bookType {
+	width: 1000px;
+	height: 50px;
+	margin: 0 auto;
+	font-size: 20px;
+}
+
+.bookTypeTitle {
+	width: 150px;
+	height: 48px;
+	line-height: 48px;
+	text-align: center;
+	border: 1px solid #aaa;
+	box-shadow: 2px 1px 2px #aaa;
+	float: left;
+}
+
+.bookLabel {
+	font-weight: bold;
+}
+
+.bookTypeCon {
+	float: left;
+	line-height: 50px;
+	margin-left: 50px;
+}
+
+/*购物导航*/
+#buy {
+	width: 1000px;
+	height: 100%;
+	margin: 0 auto;
+	padding-left: 4%;
+	margin-top: 5px;
+}
+
+#buyNav {
+	float: left
+}
+
+#buyNav li {
+	font-size: 17px;
+	width: 120px;
+	height: 40px;
+	border: 1px solid #aaa;
+	text-align: center;
+	line-height: 40px;
+	margin-top: 1px;
+	box-shadow: 2px 1px 2px #aaa;
+	cursor: pointer;
+}
+
+/* 具体内容 */
+.detailed {
+	width: 800px;
+	padding-bottom: 20px;
+	border: 1px solid #bbb;
+	box-shadow: 2px 2px 2px #aaa;
+	float: left;
+	margin-left: 50px;
+}
+
+.row {
+	height: 202px;
+	margin-top: 20px;
+	margin-left: 20px;
+	/*	border: 1px solid #aaa;*/
+	clear: left;
+}
+
+.imgDri {
+	width: 150px;
+	height: 150px;
+	border: 1px solid #aaa;
+	float: left;
+	box-shadow: 2px 2px 2px #aaa;
+}
+
+.imgPro {
+	width: 150px;
+	height: 150px;
+}
+
+.bookProperty {
+	height: 200px;
+	width: 370px;
+	float: left;
+	font-size: 16px;
+	margin-top: 10px;
+	margin-left: 70px;
+}
+
+.bookLabel {
+	font-weight: bold;
+}
+
+.bookProperty li {
+	height: 30px;
+}
+
+.overFlow {
+	height: 90px !important;
+	width: 300px;
+	overflow: hidden;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+}
+
+.joinShopCar {
+	float: left;
+	font-size: 16px;
+	font-weight: bold;
+	height: 200px;
+}
+
+.joinShopCar a {
+	display: inline-block;
+	margin-top: 90px;
+	border: 1px solid #aaa;
+}
+
+/* 分页 */
+#page {
+	clear: left;
+	height: 30px;
+	margin: 0 auto;
+	padding-top: 30px;
+	padding-left: 300px;
+}
+
+#page li {
+	float: left;
+	margin-left: 10px;
+}
+
+/* 脚部 */
+footer {
+	margin-top: 50px;
+	height: 110px;
+	/*background: url('../img/bg-ripple-footer.png');*/
+	background: #999;
+}
+
+.copyright {
+	width: 300px;
+	height: 20px;
+	margin: 0 auto;
+	text-align: center;
+	color: #fff;
+	font-weight: bold;
+	line-height: 110px;
+}
