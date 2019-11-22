@@ -20,12 +20,12 @@ public class UserDaoImpl implements UserDao {
 			String sql = "select * from user where uname='" + name + "'";
 			ResultSet rs = DBUtil.queryData(sql);
 			while (rs.next()) {
-				u.setUid(rs.getInt("id"));
+				u.setUid(rs.getInt("uid"));
 				u.setUname(rs.getString("uname"));
 				u.setUpasswd(rs.getString("upasswd"));
 				u.setUemail(rs.getString("uemail"));
 				u.setUsex(rs.getString("usex"));
-				u.setBirthday(rs.getString("brithday"));
+				u.setBirthday(rs.getString("birthday"));
 				u.setUphone(rs.getString("uphone"));
 				u.setUaddress(rs.getString("uaddress"));
 				u.setBalance(rs.getFloat("balance"));

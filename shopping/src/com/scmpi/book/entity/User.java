@@ -82,17 +82,17 @@ import java.util.*;
 
 public class User implements Serializable{
 	//成员信息
-	int uid;	//用户id
-	String uname;	//姓名
-	String upasswd;	//密码
-	String uemail; //邮箱
-	String usex;	//性别
-	String birthday;	//生日
-	String uphone;	//电话
-	String uaddress;	//地址
-	float balance;	//余额
-	int discount;	//折扣
-	int integral;	//积分
+	private  int uid;	//用户id
+	private  String uname;	//姓名
+	private  String upasswd;	//密码
+	private  String uemail; //邮箱
+	private  String usex;	//性别
+	private  String birthday;	//生日
+	private  String uphone;	//电话
+	private  String uaddress;	//地址
+	private  float balance;	//余额
+	private  int discount;	//折扣
+	private  int integral;	//积分
 	
 	
 	public String getUemail() {
