@@ -86,12 +86,6 @@ public class User implements Serializable{
 	String uname;	//姓名
 	String upasswd;	//密码
 	String uemail; //邮箱
-	public String getUemail() {
-		return uemail;
-	}
-	public void setUemail(String uemail) {
-		this.uemail = uemail;
-	}
 	String usex;	//性别
 	String birthday;	//生日
 	String uphone;	//电话
@@ -99,6 +93,15 @@ public class User implements Serializable{
 	float balance;	//余额
 	int discount;	//折扣
 	int integral;	//积分
+	
+	
+	public String getUemail() {
+		return uemail;
+	}
+	public void setUemail(String uemail) {
+		this.uemail = uemail;
+	}
+	
 	public User(){
 		//无参数构造方法
 	}
@@ -106,7 +109,7 @@ public class User implements Serializable{
 		//构造方法
 		this.uname = uname;
 		this.upasswd = upasswd;
-		this.uemail = uemail;
+		this.uemail = email;
 		this.usex = usex;
 		this.birthday = birthday;
 		this.uphone = uphone;
