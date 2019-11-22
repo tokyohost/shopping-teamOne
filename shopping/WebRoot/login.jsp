@@ -4,6 +4,7 @@
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
+		
 %>
 
 <html lang="en">
@@ -147,6 +148,7 @@ html>body td {
 				<li>
 					<a href="<%=path%>/login.jsp">[登陆]</a>
 				</li>
+				
 				<li>
 					<a href="<%=path%>/register.jsp">[免费注册]</a>
 				</li>
