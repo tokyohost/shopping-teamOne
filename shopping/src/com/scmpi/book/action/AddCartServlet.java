@@ -23,9 +23,9 @@ public class AddCartServlet extends HttpServlet {
 		ProductService pservice =new ProductServiceImpl();
 		try{
 			OrderItem oi=new OrderItem();//订单项对象
-			oi.setNumber(1);
+			oi.setOrder_num(1);	//第一次下单数量为1
 			oi.setP(pservice.queryByName(name));
-			oi.setCost(pservice.queryByName(name).getPrice()*oi.getNumber());
+			oi.setOrder_subtotal(pservice.queryByName(name).getPrice()*oi.getOrder_num());	//设置小计金额
 			c.addItem(oi);//将订单项放入购物车
 			//req.getRequestDispatcher("/servlet/PageServlet").forward(req,res);
 			req.setAttribute("datas",session.getAttribute("datas"));
@@ -34,6 +34,7 @@ public class AddCartServlet extends HttpServlet {
 			req.setAttribute("recordCount", session.getAttribute("recordCount"));
 		    req.getRequestDispatcher("/queryProduct.jsp").forward(req,res);
 		}catch(Exception e){
+			
 			req.getRequestDispatcher("/error.jsp").forward(req,res);
 		}
 		

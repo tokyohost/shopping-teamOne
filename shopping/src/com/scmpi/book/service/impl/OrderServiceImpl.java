@@ -14,21 +14,22 @@ public class OrderServiceImpl implements OrderService {
 	public void insertOrder(Collection<OrderItem> items, User u)
 			throws Exception {
 		try {
+			//创建订单
 			Order  o=new Order();
 			Set<OrderItem> ois=new HashSet<OrderItem>();
-			double sum=0.0;
+			float sum=0;
 			for(OrderItem oi:items){
-				sum+=oi.getCost();
+				sum+=oi.getOrder_num();	//计算总价
 				ois.add(oi);
 			}
 			SimpleDateFormat sf=new SimpleDateFormat("yyyy-mm-dd  HH:mm:ss");
 		    Date d=new Date();
 		    String str=sf.format(d);
-			o.setDate(str);
-			o.setStatus("未付款");
+			o.setOrder_date(str);;
+			o.setOrder_status("已提交订单");;
 			o.setUser(u);
 			o.setItems(ois);
-			o.setCost(sum);
+			o.setTotal_amount(sum);	
 			dao.insertOrder(o);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

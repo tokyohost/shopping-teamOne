@@ -129,7 +129,7 @@ html>body td {
 		<div id="topNav">
 			<ul>
 				<li class="welcome">
-					您好${user.name}，欢迎光临网上显卡系统！请
+					您好${user.uname}，欢迎光临网上显卡系统！请
 				</li>
 				<li>
 					<a href="<%=path%>/login.jsp">[登陆]</a>
@@ -175,22 +175,22 @@ html>body td {
 					<tr>
 
 						<td>
-							${item.p.name}
+							${item.p.pname}
 						</td>
 						<td>
 							${item.p.price}
 						</td>
 						<td>
-							${item.number}
+							${item.order_num}
 						</td>
 						<td>
-							${item.cost}
+							${item.order_subtotal}
 						</td>
 					</tr>
 				</c:forEach>
 				<tr>
 					<td colspan="5">
-						您的购物车中所有商品总金额：${cart.cost}
+						您的购物车中所有商品总金额：${cart.total_amount}
 					</td>
 				</tr>
 			</table>
@@ -204,7 +204,7 @@ html>body td {
 							用户名
 						</td>
 						<td>
-							${user.name}
+							${user.uname}
 						</td>
 					</tr>
 					<tr>
@@ -212,15 +212,15 @@ html>body td {
 							地址
 						</td>
 						<td>
-							<input type="text" name="uadd" value="${user.address} " />
+							<input type="text" name="uadd" value="${user.uaddress} " />
 						</td>
 					</tr>
 					<tr>
 						<td>
-							邮编
+							手机号
 						</td>
 						<td>
-							<input type="text" name="upost" value="${user.postCode} " />
+							<input type="text" name="upost" value="${user.uphone} " />
 						</td>
 					</tr>
 					<tr>
@@ -228,16 +228,18 @@ html>body td {
 							email
 						</td>
 						<td>
-							<input type="text" name="umail" value="${user.email} " />
+							<input type="text" name="umail" value="${user.uemail} " />
 						</td>
 					</tr>
 					<tr>
+					<!--  
 						<td>
 							电话号码
 						</td>
 						<td>
-							<input type="text" name="uphone" value="${user.phone} " />
+							<input type="text" name="uphone" value="${user.uphone} " />
 						</td>
+						-->
 					</tr>
 					<tr>
 						<td colspan="2">

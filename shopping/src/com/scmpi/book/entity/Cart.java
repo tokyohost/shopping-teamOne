@@ -3,20 +3,21 @@ import java.util.*;
 
 public class Cart {  
 	Map<Integer,OrderItem> map=new HashMap<Integer,OrderItem>();
-	private double cost;
+	private float total_amount;	//总价
 	
+	public float getTotal_amount() {
+		return this.sumAmount();
+	}
+	public void setTotal_amount(float total_amount) {
+		this.total_amount = total_amount;
+	}
 	public Map<Integer, OrderItem> getMap() {
 		return map;
 	}
 	public void setMap(Map<Integer, OrderItem> map) {
 		this.map = map;
 	}
-	public double getCost() {
-		return this.sumCost();
-	}
-	public void setCost(double cost) {
-		this.cost = cost;
-	}
+	
 	/**
 	 * @description 1:第一次添加时，map.put方法直接加到集合里面
 	 *              2:第二次或者多次添加时需要把已经添加好的OrderItem找出来把数量进行修改
@@ -29,8 +30,9 @@ public class Cart {
 		Integer pi=oi.getP().getPid();
 		if(map.containsKey(pi)){
 			OrderItem oim=map.get(pi);
-			oim.setNumber(oim.getNumber()+oi.getNumber());
-			oim.setCost(oim.getNumber()*oi.getP().getPrice());
+//			oim.setNumber(oim.getNumber()+oi.getNumber());
+			oim.setOrder_num(oim.getOrder_num()+oi.getOrder_num());	//添加商品
+			oim.setOrder_subtotal((oim.getOrder_num()*oi.getP().getPrice())); //设置小计价格
 		}else{
 			map.put(pi, oi);
 		}
@@ -43,8 +45,10 @@ public class Cart {
 	public void modifyNumber(OrderItem oi){
 		Integer pid=oi.getP().getPid();
 		OrderItem im=map.get(pid);
-		im.setNumber(oi.getNumber());
-		im.setCost(oi.getP().getPrice()*im.getNumber());
+//		im.setNumber(oi.getNumber());
+		im.setOrder_num(oi.getOrder_num());
+//		im.setCost(oi.getP().getPrice()*im.getNumber());
+		im.setOrder_subtotal(oi.getP().getPrice()*im.getOrder_num()); //修改数量
 	}
 	/**
 	 *
@@ -58,11 +62,11 @@ public class Cart {
 	public void clear(){
 		map.clear();
 	}
-	public double sumCost(){
+	public float sumAmount(){
 		Collection<OrderItem> its=map.values();
-		double sum=0.0;
+		float sum=0;
 		for(OrderItem oi:its){
-			sum+=oi.getCost();
+			sum+=oi.getOrder_subtotal();
 		}
 		return sum;
 		

@@ -150,7 +150,7 @@ html>body td {
 		<div id="topNav">
 			<ul>
 				<li class="welcome">
-					您好${user.name}，欢迎光临网上显卡系统！请
+					您好${user.uname}，欢迎光临网上显卡系统！请
 				</li>
 				<li>
 					<a href="<%=path%>/login.jsp">[登陆]</a>
@@ -203,22 +203,22 @@ html>body td {
 									<input type="checkbox" value="${item.p.pid} " name="ppid">
 								</td>
 								<td>
-									${item.p.name}
+									${item.p.pname}
 								</td>
 								<td>
 									${item.p.price}
 								</td>
 								<td>
-									<input type="text" value="${item.number}" name="pnum" />
+									<input type="text" value="${item.order_num}" name="pnum" />
 								</td>
 								<td>
-									${item.cost}
+									${item.order_subtotal}
 								</td>
 							</tr>
 						</c:forEach>
 						<tr>
 							<td colspan="5">
-								您的购物车中所有商品总金额：${cart.cost}
+								您的购物车中所有商品总金额：${cart.total_amount}
 							</td>
 						</tr>
 					</table>
