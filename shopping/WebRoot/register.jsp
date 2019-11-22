@@ -239,7 +239,7 @@ html>body td {
 							出生日期
 						</td>
 						<td>
-							<input type="date" name="birthday" />
+							<input type="text" name="birthday" />
 						</td>
 						<td>
 							<font color="red">*

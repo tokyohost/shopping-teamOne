@@ -20,7 +20,7 @@ public class RegisterServlet extends HttpServlet {
 		String upasswd = request.getParameter("password");
 		String email = request.getParameter("email");
 		String usex = request.getParameter("sex");
-		String uphone = request.getParameter("uphone");
+		String uphone = request.getParameter("phone");
 		String uaddress = request.getParameter("address");
 		String birthday = request.getParameter("birthday");
 		
