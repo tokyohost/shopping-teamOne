@@ -71,15 +71,16 @@
 				<li class="welcome">
 					您好${user.uname}，欢迎光临网上书店系统！请
 				</li>
-				
+				<!--  
 				<li>
 					<a href="<%=path%>/login.jsp">[登陆]</a>
 				</li>
 				<li>
 				    <a href="<%=path%>/register.jsp">[免费注册]</a>
 				</li>
+				-->
 				<li>
-					<a href="<%=path%>/cart.jsp">[查购购物车]</a>
+					<a href="<%=path%>/cart.jsp">[查购物车]</a>
 				</li>
 				<li>
 					<a href="<%=path%>/order.jsp">[去购物车结算]</a>
@@ -98,10 +99,10 @@
 		<div id="main">
 			<div id="bookType">
 				<div class="bookTypeTitle">
-					<span>图书类别</span>
+					<span>显卡类别</span>
 				</div>
 				<div class="bookTypeCon">
-					<span>本系统所有图书列表</span>
+					<span>本系统所有显卡列表</span>
 				</div>
 			</div>
 			<div id="buy">
@@ -110,7 +111,7 @@
 					<ul>
                     <c:forEach var="pt" items="${ptlist}">
 						<li>
-					   <a href="<%=path%>/ProductTypeServlet?ptid=${pt.id}">${pt.typeName}</a> 
+					   <a href="<%=path%>/ProductTypeServlet?ptid=${pt.cid}">${pt.cName}</a> 
 						</li>
                     </c:forEach>
 					</ul>
