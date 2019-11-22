@@ -1,6 +1,7 @@
 package com.scmpi.book.action;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,10 @@ public class LoginServlet extends HttpServlet {
         UserService uservice= new UserServiceImpl();
         try{
         	User u=uservice.login(name, password);
+        	
+        	if(u ==null){
+        		throw new Exception("can not find user or passwd not mach");
+        	}
         	session.setAttribute("user", u);
         	//查询得到所有图书信息
         	Cart c=new Cart();//购物车
@@ -30,6 +35,7 @@ public class LoginServlet extends HttpServlet {
         	req.getRequestDispatcher("/servlet/PageServlet").forward(req,res);
         }catch(Exception e){
         	 //e.printStackTrace();
+        
            req.getRequestDispatcher("/login.jsp").forward(req, res);	
         }
 	}

@@ -150,7 +150,7 @@ html>body td {
 		<div id="topNav">
 			<ul>
 				<li class="welcome">
-					您好${user.name}，欢迎光临网上书店系统！请
+					您好${user.name}，欢迎光临网上显卡系统！请
 				</li>
 				<li>
 					<a href="<%=path%>/login.jsp">[登陆]</a>

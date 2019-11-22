@@ -26,15 +26,20 @@ public class ProductDaoImpl implements ProductDao {
 		List<Product> list = new ArrayList<Product>();
 		try {
 
-			String sql = "select * from cart_book";
+			String sql = "select * from product_item";
 			ResultSet rs = DBUtil.queryData(sql);
 			while (rs.next()) {
 				Product p = new Product();
-				p.setPid(rs.getInt("id"));
-				p.setDescw(rs.getString("description"));
-				p.setName(rs.getString("name"));
-				p.setPrice(rs.getDouble("price"));
+				p.setPid(rs.getInt("pid"));
+				p.setDescw(rs.getString("descw"));
+				p.setPname(rs.getString("pname"));
+				p.setPrice(rs.getFloat("price"));
 				p.setImg(rs.getString("img"));
+				p.setPclassifyid(String.valueOf(rs.getInt("pclassifyid")));
+				p.setPdate(rs.getString("pdate"));
+				p.setSuppliers(rs.getString("Suppliers"));
+				p.setPnumber(rs.getInt("pnumber"));
+				p.setPrice(rs.getFloat("price"));
 				list.add(p);
 			}
 			return list;
@@ -44,20 +49,25 @@ public class ProductDaoImpl implements ProductDao {
 		}
 	}
 
-	public Product queryById(Integer id) throws Exception {
+	public Product queryById(Integer pid) throws Exception {
 
 		Product p = new Product();
 		try {
 
-			String sql = "select * from cart_book where id=" + id;
+			String sql = "select * from product_item where pid=" + pid;
 			ResultSet rs = DBUtil.queryData(sql);
 			while (rs.next()) {
 
-				p.setPid(rs.getInt("id"));
-				p.setDescw(rs.getString("description"));
-				p.setName(rs.getString("name"));
-				p.setPrice(rs.getDouble("price"));
+				p.setPid(rs.getInt("pid"));
+				p.setDescw(rs.getString("descw"));
+				p.setPname(rs.getString("pname"));
+				p.setPrice(rs.getFloat("price"));
 				p.setImg(rs.getString("img"));
+				p.setPclassifyid(String.valueOf(rs.getInt("pclassifyid")));
+				p.setPdate(rs.getString("pdate"));
+				p.setSuppliers(rs.getString("Suppliers"));
+				p.setPnumber(rs.getInt("pnumber"));
+				p.setPrice(rs.getFloat("price"));
 			}
 			return p;
 		} catch (Exception e) {
@@ -70,15 +80,20 @@ public class ProductDaoImpl implements ProductDao {
 
 		Product p = new Product();
 		try {
-			String sql = "select * from cart_book where name='" + name
+			String sql = "select * from product_item where pname='" + name
 					+ "'";
 			ResultSet rs = DBUtil.queryData(sql);
 			while (rs.next()) {
-				p.setPid(rs.getInt("id"));
-				p.setDescw(rs.getString("description"));
-				p.setName(rs.getString("name"));
-				p.setPrice(rs.getDouble("price"));
+				p.setPid(rs.getInt("pid"));
+				p.setDescw(rs.getString("descw"));
+				p.setPname(rs.getString("pname"));
+				p.setPrice(rs.getFloat("price"));
 				p.setImg(rs.getString("img"));
+				p.setPclassifyid(String.valueOf(rs.getInt("pclassifyid")));
+				p.setPdate(rs.getString("pdate"));
+				p.setSuppliers(rs.getString("Suppliers"));
+				p.setPnumber(rs.getInt("pnumber"));
+				p.setPrice(rs.getFloat("price"));
 			}
 			return p;
 		} catch (Exception e) {
@@ -114,22 +129,27 @@ public class ProductDaoImpl implements ProductDao {
 
 	}
 
-	public List<Product> queryPdtsById(int typeid) throws Exception {
+	public List<Product> queryPdtsById(int pclassifyid) throws Exception {
 
 		List<Product> list = new ArrayList<Product>();
 		try {
 
-		 String sql="select * from cart_book where book_type_id='"+typeid+"'";
+		 String sql="select * from product_item where pclassifyid='"+pclassifyid+"'";
 		 
 			ResultSet rs = DBUtil.queryData(sql);
 			while (rs.next()) {
 				Product p = new Product();
-				p.setPid(rs.getInt("id"));
-				p.setDescw(rs.getString("description"));
-				p.setName(rs.getString("name"));
-				p.setPrice(rs.getDouble("price"));
+				p.setPid(rs.getInt("pid"));
+				p.setDescw(rs.getString("descw"));
+				p.setPname(rs.getString("pname"));
+				p.setPrice(rs.getFloat("price"));
 				p.setImg(rs.getString("img"));
-				list.add(p);
+				p.setPclassifyid(String.valueOf(rs.getInt("pclassifyid")));
+				p.setPdate(rs.getString("pdate"));
+				p.setSuppliers(rs.getString("Suppliers"));
+				p.setPnumber(rs.getInt("pnumber"));
+				p.setPrice(rs.getFloat("price"));
+				list.add(p); 
 			}
 			return list;
 		} catch (Exception e) {
