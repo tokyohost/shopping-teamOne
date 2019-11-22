@@ -12,7 +12,7 @@ public class UserServiceImpl implements UserService {
 	public User login(String name, String password) throws Exception{
 		User u=dao.queryByName(name);
 		if(u!=null){
-			if(u.getPassword().equals(password)){
+			if(u.getUpasswd().equals(password)){
 				return u;
 			}else{
 				return null;

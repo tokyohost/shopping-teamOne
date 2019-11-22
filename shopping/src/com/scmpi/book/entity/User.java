@@ -85,6 +85,13 @@ public class User implements Serializable{
 	int uid;	//用户id
 	String uname;	//姓名
 	String upasswd;	//密码
+	String uemail; //邮箱
+	public String getUemail() {
+		return uemail;
+	}
+	public void setUemail(String uemail) {
+		this.uemail = uemail;
+	}
 	String usex;	//性别
 	String birthday;	//生日
 	String uphone;	//电话
@@ -95,11 +102,25 @@ public class User implements Serializable{
 	public User(){
 		//无参数构造方法
 	}
+	public User(String uname,String upasswd,String email,String usex,String birthday,String uphone,String uaddress,float balance,int discount,int integral){
+		//构造方法
+		this.uname = uname;
+		this.upasswd = upasswd;
+		this.uemail = uemail;
+		this.usex = usex;
+		this.birthday = birthday;
+		this.uphone = uphone;
+		this.uaddress = uaddress;
+		this.balance = balance;
+		this.discount = discount;
+		this.integral = integral;
+	}
 	
-	public User(int uid,String uname,String upasswd,String usex,String birthday,String uphone,String uaddress,float balance,int discount,int integral){
+	public User(int uid,String uname,String upasswd,String uemail,String usex,String birthday,String uphone,String uaddress,float balance,int discount,int integral){
 		//构造方法
 		this.uid = uid;
 		this.uname = uname;
+		this.uemail = uemail;
 		this.upasswd = upasswd;
 		this.usex = usex;
 		this.birthday = birthday;
