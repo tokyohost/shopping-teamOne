@@ -19,17 +19,17 @@ public class OrderServlet extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		res.setContentType("text/html");
-		String address=req.getParameter("uadd");
-		String post=req.getParameter("upost");
-		String mail=req.getParameter("umail");
-		String phone=req.getParameter("uphone");
+		String address=req.getParameter("uaddress");
+		String uphone=req.getParameter("uphone");
+		String uemail=req.getParameter("umail");
+//		String uphone=req.getParameter("uphone");
 		HttpSession session=req.getSession(true);
 		Cart c=(Cart)session.getAttribute("cart");
 		User u=(User)session.getAttribute("user");
-		u.setAddress(address);
-		u.setPostCode(post);
-		u.setEmail(mail);
-		u.setPhone(phone);
+		u.setUaddress(address);
+		u.setUphone(uphone);
+		u.setUemail(uemail);;
+//		u.setPhone(phone);
 		Collection<OrderItem> items=c.getMap().values();
 		OrderService oservice=new OrderServiceImpl();
 		

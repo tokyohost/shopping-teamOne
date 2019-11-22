@@ -32,9 +32,10 @@ public class ModifyServlet extends HttpServlet {
 			ProductService ps = new ProductServiceImpl();
 			for (int i = 0; i < num.length; i++) {
 				OrderItem oi = new OrderItem();
-				oi.setNumber(Integer.parseInt(num[i].trim()));
+				oi.setOrder_num(Integer.parseInt(num[i].trim()));
 				oi.setP(ps.queryById(Integer.valueOf(str[i].trim())));
-				oi.setCost(oi.getNumber()*oi.getP().getPrice());
+				oi.setOrder_subtotal(oi.getOrder_num()*oi.getP().getPrice());
+				//tmd简直是屎山，可读性极差！！！！
 				c.modifyNumber(oi);
 			}
 			req.getRequestDispatcher("/cart.jsp").forward(req, res);
