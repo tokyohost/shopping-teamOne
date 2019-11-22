@@ -17,16 +17,20 @@ public class UserDaoImpl implements UserDao {
 		User u = new User();
 		try {
 
-			String sql = "select * from cart_user where name='" + name + "'";
+			String sql = "select * from user where uname='" + name + "'";
 			ResultSet rs = DBUtil.queryData(sql);
 			while (rs.next()) {
 				u.setUid(rs.getInt("id"));
-				u.setName(rs.getString("name"));
-				u.setPassword(rs.getString("password"));
-				u.setAddress(rs.getString("address"));
-				u.setPostCode(rs.getString("postcode"));
-				u.setEmail(rs.getString("email"));
-				u.setPhone(rs.getString("phone"));
+				u.setUname(rs.getString("uname"));
+				u.setUpasswd(rs.getString("upasswd"));
+				u.setUsex(rs.getString("usex"));
+				u.setBirthday(rs.getString("brithday"));
+				u.setUphone(rs.getString("uphone"));
+				u.setUaddress(rs.getString("uaddress"));
+				u.setBalance(rs.getFloat("balance"));
+				u.setDiscount(rs.getInt("discount"));
+				u.setIntegral(rs.getInt("integral"));
+				
 			}
 			return u;
 		} catch (Exception e) {
@@ -42,9 +46,8 @@ public class UserDaoImpl implements UserDao {
 
 		try {
 
-			String sql = "update cart_user set address='" + u.getAddress()
-					+ "',postcode='" + u.getPostCode() + "',email='"
-					+ u.getEmail() + "',  phone='" + u.getPhone()
+			String sql = "update user set uaddress='" + u.getUaddress()
+					+ "',  uphone='" + u.getUphone()
 					+ "' where id=" + u.getUid();
 			System.out.println(sql);
 			DBUtil.Update(sql);
@@ -62,16 +65,23 @@ public class UserDaoImpl implements UserDao {
 
 		try {
 
-			String sql = "insert into cart_user(name,password,address,postcode,email,phone)values('"
-					+ u.getName()
+			String sql = "insert into user(uname,upasswd,usex,uphone,uaddress,balance,discount,integral)values('"
+					+ u.getUname()
 					+ "','"
-					+ u.getPassword()
+					+ u.getUpasswd()
 					+ "','"
-					+ u.getAddress()
+					+ u.getUsex()
 					+ "','"
-					+ u.getPostCode()
+					+ u.getUphone()
 					+ "','"
-					+ u.getEmail() + "','" + u.getPhone() + "')";
+					+ u.getUaddress()
+					+ "','" 
+					+u.getBalance()
+					+ "','"
+					+u.getDiscount()
+					+ "','"
+					+ u.getIntegral()
+					+ "')";
 			DBUtil.Update(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
