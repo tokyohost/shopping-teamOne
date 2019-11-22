@@ -23,6 +23,7 @@ public class UserDaoImpl implements UserDao {
 				u.setUid(rs.getInt("id"));
 				u.setUname(rs.getString("uname"));
 				u.setUpasswd(rs.getString("upasswd"));
+				u.setUemail(rs.getString("uemail"));
 				u.setUsex(rs.getString("usex"));
 				u.setBirthday(rs.getString("brithday"));
 				u.setUphone(rs.getString("uphone"));
@@ -65,10 +66,13 @@ public class UserDaoImpl implements UserDao {
 
 		try {
 
-			String sql = "insert into user(uname,upasswd,usex,uphone,uaddress,balance,discount,integral)values('"
+			String sql = "insert into user(uname,upasswd,uemail,usex,uphone,uaddress,balance,discount,integral)values('"
 					+ u.getUname()
 					+ "','"
 					+ u.getUpasswd()
+					+ "','"
+					+ u.getUemail()
+					
 					+ "','"
 					+ u.getUsex()
 					+ "','"

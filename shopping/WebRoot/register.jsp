@@ -197,6 +197,18 @@ html>body td {
 					</tr>
 					<tr>
 						<td>
+							邮箱
+						</td>
+						<td>
+							<input type="text" name="email" />
+						</td>
+						<td>
+							<font color="red">*
+							</font>
+						</td>
+					</tr>
+					<tr>
+						<td>
 							地址
 						</td>
 						<td>
@@ -209,10 +221,10 @@ html>body td {
 					</tr>
 					<tr>
 						<td>
-							邮政编码
+							性别
 						</td>
 						<td>
-							<input type="text" name="postcode" />
+							<input type="text" name="sex" />
 						</td>
 						<td>
 							<font color="red">*
@@ -221,16 +233,17 @@ html>body td {
 					</tr>
 					<tr>
 						<td>
-							Email
+							出生日期
 						</td>
 						<td>
-							<input type="text" name="email" />
+							<input type="date" name="birthday" />
 						</td>
 						<td>
 							<font color="red">*
 							</font>
 						</td>
 					</tr>
+					
 					<tr>
 						<td>
 							电话联系方式
@@ -239,8 +252,7 @@ html>body td {
 							<input type="text" name="phone" />
 						</td>
 						<td>
-							<font color="red">*
-							</font>
+							
 						</td>
 					</tr>
 					<tr>
