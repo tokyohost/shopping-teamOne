@@ -98,12 +98,12 @@ public class ProductDaoImpl implements ProductDao {
 		List<ProductType> list = new ArrayList<ProductType>();
 		try {
 
-			String sql = "select * from book_type";
+			String sql = "select * from product_category";
 			ResultSet rs = DBUtil.queryData(sql);
 			while (rs.next()) {
 				ProductType pt = new ProductType();
-				pt.setId(rs.getInt("id"));
-				pt.setTypeName(rs.getString("book_type_name"));
+				pt.setCid(rs.getInt("cid"));
+				pt.setcName(rs.getString("cname"));
 				list.add(pt);
 			}
 			return list;
