@@ -127,18 +127,24 @@
 								<div class="bookProperty">
 									<ul>
 										<li>
-											<span class="bookLabel">名称：</span>${pi.name}
+											<span class="bookLabel">名称：</span>${pi.pname}
 										</li>
 										<li>
 											<span class="bookLabel">价格：</span>${pi.price}
 										</li>
 										<li >
-											<span class="bookLabel">描述：</span><div class="overFlow">${pi.descw}</div>
+											<span class="bookLabel">数量：</span>${pi.pnumber }
+										</li>
+										<li >
+											<span class="bookLabel">供应商：</span>${pi.suppliers }
+										</li>
+										<li >
+											<span class="bookLabel">描述：</span><div class="overFlow">${pi.descw }</div>
 										</li>
 									</ul>
 								</div>
 								<div class="joinShopCar">
-									<a href="<%=path%>/addCart?pname=${pi.name}"><img
+									<a href="<%=path%>/addCart?pname=${pi.pname}"><img
 											src="<%=path%>/img/buy.gif">
 									</a>
 								</div>
