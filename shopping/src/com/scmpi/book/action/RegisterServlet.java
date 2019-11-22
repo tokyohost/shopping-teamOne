@@ -16,13 +16,17 @@ public class RegisterServlet extends HttpServlet {
 	public void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html");
-		String username = request.getParameter("userName");
-		String pwd = request.getParameter("pwd");
-		String address = request.getParameter("address");
-		String postcode = request.getParameter("postcode");
+		String uname = request.getParameter("userName");
+		String upasswd = request.getParameter("password");
 		String email = request.getParameter("email");
-		String phone = request.getParameter("phone");
-		User user = new User(address, email, username, pwd, phone, postcode);
+		String usex = request.getParameter("sex");
+		String uphone = request.getParameter("uphone");
+		String uaddress = request.getParameter("address");
+		String birthday = request.getParameter("birthday");
+		
+		
+		
+		User user = new User(uname,upasswd,email,usex,birthday,uphone,uaddress, 0, 100, 0);
 		// 回调服务层
 		UserService userService = new UserServiceImpl();
 		try {

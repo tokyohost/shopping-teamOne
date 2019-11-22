@@ -176,7 +176,7 @@ html>body td {
 							密码
 						</td>
 						<td>
-							<input type="password" name="pwd" />
+							<input type="password" name="password" />
 						</td>
 						<td>
 							<font color="red">*
@@ -224,7 +224,10 @@ html>body td {
 							性别
 						</td>
 						<td>
-							<input type="text" name="sex" />
+							<select type="text" name="sex">
+								<option>男</option>
+								<option>女</option>
+							</select>
 						</td>
 						<td>
 							<font color="red">*
