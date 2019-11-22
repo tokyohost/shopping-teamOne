@@ -92,6 +92,9 @@ public class User implements Serializable{
 	float balance;	//余额
 	int discount;	//折扣
 	int integral;	//积分
+	public User(){
+		//无参数构造方法
+	}
 	
 	public User(int uid,String uname,String upasswd,String usex,String birthday,String uphone,String uaddress,float balance,int discount,int integral){
 		//构造方法
