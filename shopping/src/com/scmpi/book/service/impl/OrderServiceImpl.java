@@ -19,14 +19,14 @@ public class OrderServiceImpl implements OrderService {
 			Set<OrderItem> ois=new HashSet<OrderItem>();
 			float sum=0;
 			for(OrderItem oi:items){
-				sum+=oi.getOrder_num();	//计算总价
+				sum+=oi.getOrder_subtotal();	//计算总价
 				ois.add(oi);
 			}
 			SimpleDateFormat sf=new SimpleDateFormat("yyyy-mm-dd  HH:mm:ss");
 		    Date d=new Date();
 		    String str=sf.format(d);
 			o.setOrder_date(str);;
-			o.setOrder_status("已提交订单");;
+			o.setOrder_status("已提交订单");
 			o.setUser(u);
 			o.setItems(ois);
 			o.setTotal_amount(sum);	
