@@ -8,14 +8,16 @@ import com.scmpi.book.dao.*;
 import com.scmpi.book.dao.impl.*;
 import com.scmpi.book.entity.*;
 import com.scmpi.book.service.OrderService;
+
 import java.util.*;
 public class OrderServiceImpl implements OrderService {
     OrderDao dao=new OrderDaoImpl();
+    Order o;
 	public void insertOrder(Collection<OrderItem> items, User u)
 			throws Exception {
 		try {
 			//创建订单
-			Order  o=new Order();
+			o=new Order();
 			Set<OrderItem> ois=new HashSet<OrderItem>();
 			float sum=0;
 			for(OrderItem oi:items){
@@ -37,5 +39,52 @@ public class OrderServiceImpl implements OrderService {
 		}
 
 	}
+	@Override
+	public Order getOrder(User u) throws Exception {
+		// TODO 自动生成的方法存根
+		//必须在create 之后能获取order
+		Order o = this.o;
+		return o;
+		
+	}
+	@Override
+	public Order createOrder(Collection<OrderItem> items, User u)
+			throws Exception {
+		// TODO 自动生成的方法存根
+		
+		
+		try {
+			//创建订单
+			o=new Order();
+			Set<OrderItem> ois=new HashSet<OrderItem>();
+			float sum=0;
+			for(OrderItem oi:items){
+				sum+=oi.getOrder_subtotal();	//计算总价
+				ois.add(oi);
+			}
+			SimpleDateFormat sf=new SimpleDateFormat("yyyy-mm-dd  HH:mm:ss");
+		    Date d=new Date();
+		    String str=sf.format(d);
+			o.setOrder_date(str);;
+			o.setOrder_status("已创建订单");
+			o.setUser(u);
+			o.setItems(ois);
+			o.setTotal_amount(sum);	
+//			dao.insertOrder(o);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return o;
+	}
+	@Override
+	public void creatInsert(Order o) throws Exception {
+		// TODO 自动生成的方法存根
+		dao.insertOrder(o);
+		
+	}
+	
+	
 
 }
+

@@ -90,10 +90,6 @@
     <filter-name>encoding</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  <servlet>
-    <servlet-name>ordershow</servlet-name>
-    <servlet-class>com.scmpi.book.action.ordershow</servlet-class>
-  </servlet>
     <servlet>
         <servlet-name>OrderShowServlet</servlet-name>
         <servlet-class>com.scmpi.book.action.OrderShowServlet</servlet-class>
