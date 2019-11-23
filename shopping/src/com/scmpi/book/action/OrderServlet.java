@@ -14,10 +14,15 @@ import javax.servlet.http.HttpSession;
 
 
 public class OrderServlet extends HttpServlet {
+	
+	
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
+	
+		
+		
 		res.setContentType("text/html");
 		String address=req.getParameter("uaddress");
 		String uphone=req.getParameter("uphone");

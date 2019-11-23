@@ -86,6 +86,9 @@
 					<a href="<%=path%>/order.jsp">[去购物车结算]</a>
 				</li>
 				<li>
+					<a href="<%=path%>/OrderShowServlet">[查询订单]</a>
+				</li>
+				<li>
 					<a href="#">[积分:${user.integral }]</a>
 				</li>
 				<li>
