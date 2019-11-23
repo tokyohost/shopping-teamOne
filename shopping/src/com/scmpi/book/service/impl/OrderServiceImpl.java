@@ -8,6 +8,7 @@ import com.scmpi.book.dao.*;
 import com.scmpi.book.dao.impl.*;
 import com.scmpi.book.entity.*;
 import com.scmpi.book.service.OrderService;
+import com.scmpi.book.util.DBUtil;
 
 import java.util.*;
 public class OrderServiceImpl implements OrderService {
@@ -81,6 +82,17 @@ public class OrderServiceImpl implements OrderService {
 	public void creatInsert(Order o) throws Exception {
 		// TODO 自动生成的方法存根
 		dao.insertOrder(o);
+		
+	}
+	@Override
+	public void updateIntegral(Order o,User u) throws Exception {
+		// TODO 自动生成的方法存根
+		//更新积分
+		float integral  = o.getTotal_amount() + u.getIntegral();	//累加积分，默认积分与余额等价
+
+		String sql = "UPDATE `user` SET `integral` = "+integral+" WHERE `uid` = "+u.getUid()+";";
+		
+		DBUtil.Update(sql);
 		
 	}
 	

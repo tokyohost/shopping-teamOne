@@ -70,6 +70,9 @@ html>body td {
 				<li>
 					<a href="#">[余额:${user.balance }]</a>
 				</li>
+				<li>
+					<a href="<%=path%>/BackIndexServlet">[返回主页]</a>
+				</li>
 			</ul>
 		</div>
 		</nav>

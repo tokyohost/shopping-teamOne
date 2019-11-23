@@ -5,7 +5,10 @@ import java.util.*;
 
 import com.scmpi.book.entity.*;
 import com.scmpi.book.service.OrderService;
+import com.scmpi.book.service.UserService;
 import com.scmpi.book.service.impl.OrderServiceImpl;
+import com.scmpi.book.service.impl.UserServiceImpl;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -44,7 +47,12 @@ public class OrderServlet extends HttpServlet {
 //			oservice.insertOrder(items, u);
 			o = oservice.getOrder(u);//获取订单对象，判断是否够购买，余额不够无法购买则返回error.jsp
 			if(o.getTotal_amount() < u.getBalance()){
-				oservice.creatInsert(o);//插入订单到数据库
+				oservice.creatInsert(o);			//插入订单到数据库
+				oservice.updateIntegral(o, u);		//更新积分
+				UserService updateUser = new UserServiceImpl();
+				session.setAttribute("user",updateUser.getUser(u.getUid()));	//更新用户数据
+				
+				
 				req.getRequestDispatcher("/ok.jsp").forward(req,res);
 			}else{
 				ErrorMsg em = new ErrorMsg();

@@ -45,9 +45,6 @@ public class OrderDaoImpl implements OrderDao {
 //				oi.setOiid(itemid);	//oid自增无需设置
 				
 			}
-//			UserDao udao=new UserDaoImpl();
-//			udao.updateUser(u);
-			
 			
 			//以下对下单商品数量进行修改
 			
@@ -60,6 +57,12 @@ public class OrderDaoImpl implements OrderDao {
 				
 				DBUtil.Update(changeSql);
 			}
+			
+			//以下对用户余额进行修改
+			float balance = u.getBalance()-o.getTotal_amount();	//计算下单后减去总价后用户余额
+			String cBalanceSql = "UPDATE `user` SET `balance` = "+balance+" WHERE `uid` = "+u.getUid()+";";
+			DBUtil.Update(cBalanceSql);
+			
 		} catch (Exception e) {
              e.printStackTrace();
 		}
