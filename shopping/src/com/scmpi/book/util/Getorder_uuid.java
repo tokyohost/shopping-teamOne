@@ -6,7 +6,6 @@ import java.util.UUID;
 public class Getorder_uuid {
 	
 	DBUtil db = new DBUtil();
-	ResultSet rs;
 	String uuid;
 	
 	public Getorder_uuid(){

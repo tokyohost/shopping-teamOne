@@ -1,7 +1,8 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*,com.scmpi.book.entity.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+ErrorMsg em =(ErrorMsg)session.getAttribute("ErrorMsg");	//获取错误信息
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -24,5 +25,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     出现错误<br>
+    
+    <%if (em != null){ %>
+    
+    <h2>错误信息:<%=em.getMsg() %></h2>
+    <p>根据错误，您可以<a href="<%=path %><%=em.getFoxurl() %>">点击此处</a>进行操作！</p>
+    
+    
+    <%} %>
   </body>
 </html>
