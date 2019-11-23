@@ -181,7 +181,9 @@ html>body td {
 							</th>
 							<th scope="col" abbr="Dual 2.5">
 								订单状态
-								<%=Orderlist.get(0).getOrder_status() %>
+							</th>
+							<th scope="col" abbr="Dual 2.5">
+								下单时间
 							</th>
 						</tr>
 						<%for(Order item:Orderlist){ %>
@@ -202,6 +204,9 @@ html>body td {
 								</td>
 								<td>
 									<%=item.getOrder_status() %>
+								</td>
+								<td>  
+									<%=item.getOrder_date() %>
 								</td>
 							</tr>
 						<%} %>
