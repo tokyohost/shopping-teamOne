@@ -91,15 +91,19 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
   <servlet>
-    <servlet-name>ordershow</servlet-name>
-    <servlet-class>com.scmpi.book.action.ordershow</servlet-class>
+    <servlet-name>OrderShowServlet</servlet-name>
+    <servlet-class>com.scmpi.book.action.OrderShowServlet</servlet-class>
   </servlet>
+  <servlet-mapping>
+    <servlet-name>OrderShowServlet</servlet-name>
+    <url-pattern>/OrderShowServlet</url-pattern>
+  </servlet-mapping>
     <servlet>
-        <servlet-name>OrderShowServlet</servlet-name>
-        <servlet-class>com.scmpi.book.action.OrderShowServlet</servlet-class>
+        <servlet-name>BackIndexServlet</servlet-name>
+        <servlet-class>com.scmpi.book.action.BackIndexServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>OrderShowServlet</servlet-name>
-        <url-pattern>/OrderShowServlet</url-pattern>
+        <servlet-name>BackIndexServlet</servlet-name>
+        <url-pattern>/BackIndexServlet</url-pattern>
     </servlet-mapping>
 </web-app>

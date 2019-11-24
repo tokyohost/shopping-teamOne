@@ -1,9 +1,12 @@
 package com.scmpi.book.service.impl;
 
+import java.sql.ResultSet;
+
 import com.scmpi.book.dao.*;
 import com.scmpi.book.dao.impl.*;
 import com.scmpi.book.entity.User;
 import com.scmpi.book.service.UserService;
+import com.scmpi.book.util.DBUtil;
 public class UserServiceImpl implements UserService {
     private UserDao dao=new UserDaoImpl();
     /**
@@ -27,6 +30,19 @@ public class UserServiceImpl implements UserService {
 	public void addUser(User u) throws Exception {
 		
 		dao.addUser(u);
+	}
+	@Override
+	public User getUser(int uid) throws Exception {
+		// TODO 自动生成的方法存根
+		//查询用户信息
+		User u = null;
+		String sql = "select * from `user` where `uid` = "+uid+";";
+		ResultSet rs = DBUtil.queryData(sql);
+		while(rs.next()){
+			u = new User(rs.getInt("uid"), rs.getString("uname"), rs.getString("upasswd"), rs.getString("uemail"), rs.getString("usex"), rs.getString("birthday"), rs.getString("uphone"), rs.getString("uaddress"), rs.getFloat("balance"), rs.getInt("discount"), rs.getInt("integral"));
+		}
+		
+		return u;
 	}
 
 }

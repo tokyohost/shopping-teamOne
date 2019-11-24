@@ -129,19 +129,25 @@ html>body td {
 		<div id="topNav">
 			<ul>
 				<li class="welcome">
-					您好${user.uname}，欢迎光临网上显卡系统！请
+					您好${user.uname}，欢迎光临网上显卡系统！
 				</li>
 				<li>
-					<a href="<%=path%>/login.jsp">[登陆]</a>
-				</li>
-				<li>
-				<a href="<%=path%>/register.jsp">[免费注册]</a>
-				</li>
-				<li>
-					<a href="<%=path%>/cart.jsp">[查购购物车]</a>
+					<a href="<%=path%>/cart.jsp">[查购物车]</a>
 				</li>
 				<li>
 					<a href="<%=path%>/order.jsp">[去购物车结算]</a>
+				</li>
+				<li>
+					<a href="<%=path%>/OrderShowServlet">[查询订单]</a>
+				</li>
+				<li>
+					<a href="#">[积分:${user.integral }]</a>
+				</li>
+				<li>
+					<a href="#">[余额:${user.balance }]</a>
+				</li>
+				<li>
+					<a href="<%=path%>/BackIndexServlet">[返回主页]</a>
 				</li>
 			</ul>
 		</div>
@@ -190,7 +196,9 @@ html>body td {
 				</c:forEach>
 				<tr>
 					<td colspan="5">
-						您的购物车中所有商品总金额：${cart.total_amount}
+						您的购物车中所有商品总金额：${cart.total_amount}<br>
+						您拥有折扣权限：${(user.discount) /10 } 折<br>
+						折扣后价格${cart.total_amount- (cart.total_amount*( (100 - user.discount) /100 ))}
 					</td>
 				</tr>
 			</table>
