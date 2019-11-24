@@ -8,7 +8,7 @@ public interface ProductService {
     public Product queryByName(String name)throws Exception;
     public Product queryById(Integer id)throws Exception;
     public List<Product> queryAll()throws Exception;
-    public void updateProduct(double cost,String desc,String name )throws Exception;
+    public void updateProduct(Product p)throws Exception;
     public List<ProductType> getProductTypes()throws Exception;
     public List<Product> queryPdtsById(int typeid)throws Exception;
 }

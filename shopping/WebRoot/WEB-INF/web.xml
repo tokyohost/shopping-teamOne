@@ -110,8 +110,38 @@
         <servlet-name>ReceiptServlet</servlet-name>
         <servlet-class>com.scmpi.book.action.ReceiptServlet</servlet-class>
     </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UserAdminServlet</servlet-name>
+    <servlet-class>com.scmpi.book.admin.UserAdminServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ProductAdminServlet</servlet-name>
+    <servlet-class>com.scmpi.book.admin.ProductAdminServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ChangeProductServlet</servlet-name>
+    <servlet-class>com.scmpi.book.admin.ChangeProductServlet</servlet-class>
+  </servlet>
     <servlet-mapping>
         <servlet-name>ReceiptServlet</servlet-name>
         <url-pattern>/ReceiptServlet</url-pattern>
     </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserAdminServlet</servlet-name>
+    <url-pattern>/servlet/UserAdminServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ProductAdminServlet</servlet-name>
+    <url-pattern>/servlet/ProductAdminServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ChangeProductServlet</servlet-name>
+    <url-pattern>/servlet/ChangeProductServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
