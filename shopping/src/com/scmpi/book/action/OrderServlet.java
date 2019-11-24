@@ -49,7 +49,7 @@ public class OrderServlet extends HttpServlet {
 			//计算折扣
 			float discountAmount = o.getTotal_amount()*(Float.valueOf(u.getDiscount()) /100);
 			o.setTotal_amount(discountAmount);
-			o.setOrder_status("已提交订单，折扣为"+(u.getDiscount()) /10 +"折");
+			o.setOrder_status("已提交订单，折扣为"+(Float.valueOf(u.getDiscount())) /10 +"折");
 			
 			//判断是否提交空订单
 			if(o.getItems().isEmpty() && o.getTotal_amount() == 0.0){
