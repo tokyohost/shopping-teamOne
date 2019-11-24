@@ -148,4 +148,5 @@
     <servlet-name>ChangeProductServlet</servlet-name>
     <url-pattern>/servlet/ChangeProductServlet</url-pattern>
   </servlet-mapping>
+
 </web-app>
