@@ -89,7 +89,7 @@ html>body td {
 		<div id="topNav">
 			<ul>
 				<li class="welcome">
-					您好${user.uname}，欢迎登录后台系统！
+					您好管理员，欢迎登录后台系统！
 				</li>
 				
 				<li>

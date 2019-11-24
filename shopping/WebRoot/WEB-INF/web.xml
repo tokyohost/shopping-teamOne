@@ -128,6 +128,10 @@
     <servlet-name>ChangeProductServlet</servlet-name>
     <servlet-class>com.scmpi.book.admin.ChangeProductServlet</servlet-class>
   </servlet>
+
+
+
+
     <servlet-mapping>
         <servlet-name>ReceiptServlet</servlet-name>
         <url-pattern>/ReceiptServlet</url-pattern>
@@ -144,4 +148,5 @@
     <servlet-name>ChangeProductServlet</servlet-name>
     <url-pattern>/servlet/ChangeProductServlet</url-pattern>
   </servlet-mapping>
+
 </web-app>
