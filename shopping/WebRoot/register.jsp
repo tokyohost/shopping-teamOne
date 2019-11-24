@@ -134,8 +134,6 @@ html>body td {
 					<li class="welcome">您好，欢迎光临网上显卡系统！</li>
 					<li><a href="<%=path%>/login.jsp">[登陆]</a></li>
 					<li><a href="<%=path%>/register.jsp">[免费注册]</a></li>
-					<li><a href="<%=path%>/cart.jsp">[查购购物车]</a></li>
-					<li><a href="<%=path%>/order.jsp">[去购物车结算]</a></li>
 				</ul>
 			</div>
 		</nav>
