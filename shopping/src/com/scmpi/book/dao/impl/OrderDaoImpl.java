@@ -29,7 +29,7 @@ public class OrderDaoImpl implements OrderDao {
 				+ uid
 				+ ","
 				+ o.getTotal_amount()
-				+ ", NOW(),'"
+				+ ", '"+o.getOrder_date()+"','"
 				+ o.getOrder_status() + "','"+uuid+"')";
 			System.out.println("SQL="+sql);
 			DBUtil.Update(sql);	
