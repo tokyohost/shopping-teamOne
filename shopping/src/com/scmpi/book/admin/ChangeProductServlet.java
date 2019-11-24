@@ -35,15 +35,15 @@ public class ChangeProductServlet extends HttpServlet {
 		ProductService ps = new ProductServiceImpl();
 		
 		Product p =new Product();
-		p.setPid(Integer.valueOf(req.getParameter("pid").trim()));
-		p.setPname(req.getParameter("pname").trim());
-		p.setPclassifyid(req.getParameter("pclassifyid").trim());
-		p.setPdate(req.getParameter("pdate").trim());
-		p.setSuppliers(req.getParameter("suppliers").trim());
-		p.setPnumber(Integer.valueOf(req.getParameter("pnumber").trim()));
-		p.setPrice(Float.valueOf(req.getParameter("price").trim()));
-		p.setDescw(req.getParameter("descw").trim());
-		p.setImg(req.getParameter("img").trim());
+		p.setPid(Integer.valueOf(req.getParameter("pid")));
+		p.setPname(req.getParameter("pname").toString());
+		p.setPclassifyid(req.getParameter("pclassifyid"));
+		p.setPdate(req.getParameter("pdate"));
+		p.setSuppliers(req.getParameter("suppliers"));
+		p.setPnumber(Integer.valueOf(req.getParameter("pnumber")));
+		p.setPrice(Float.parseFloat(req.getParameter("price")));
+		p.setDescw(req.getParameter("descw"));
+		p.setImg(req.getParameter("img"));
 		
 		
 		try {
@@ -60,7 +60,7 @@ public class ChangeProductServlet extends HttpServlet {
 		
 		
 		//Ò³ÃæÌø×ª
-		req.getRequestDispatcher("/shopping/servlet/ProductAdminServlet").forward(req, res);
+		req.getRequestDispatcher("/servlet/ProductAdminServlet").forward(req, res);
 		
 		
 		

@@ -219,9 +219,10 @@ th.nobg {
 							<tr>
 								<td>
 									<%= item.getPid() %>
+									<input type="hidden" name="pid" value="<%= item.getPid()%>">
 								</td>
 								<td>
-									<input type="text" name="pid" value="<%= item.getPname()%>">
+									<input type="text" name="pname" value="<%= item.getPname()%>">
 								</td>
 								<td>
 									<input type="number" name="pclassifyid" value="<%=item.getPclassifyid() %>" style="width:40px;">
