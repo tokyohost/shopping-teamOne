@@ -190,7 +190,9 @@ html>body td {
 				</c:forEach>
 				<tr>
 					<td colspan="5">
-						您的购物车中所有商品总金额：${cart.total_amount}
+						您的购物车中所有商品总金额：${cart.total_amount}<br>
+						您拥有折扣权限：${(user.discount) /10 } 折<br>
+						折扣后价格${cart.total_amount- (cart.total_amount*( (100 - user.discount) /100 ))}
 					</td>
 				</tr>
 			</table>
