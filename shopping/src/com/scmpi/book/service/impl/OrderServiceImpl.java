@@ -95,6 +95,14 @@ public class OrderServiceImpl implements OrderService {
 		DBUtil.Update(sql);
 		
 	}
+	@Override
+	public void updateStatus(Order o,String status) throws Exception {
+		// TODO 自动生成的方法存根
+		//修改订单状态
+		
+		String sql = "update `Order` set `order_status`='"+status+"' where `uuid`='"+o.getUuid()+"'";
+		DBUtil.Update(sql);
+	}
 	
 	
 

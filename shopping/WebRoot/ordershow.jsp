@@ -138,8 +138,25 @@ html>body td {
 		<!-- IE6、7、8支持CSS3特效 -->
 		<!--[if lte IE 8]><script src="js/PIE.js"></script><![endif]-->
 		<!--[if lt IE 9]><script type="text/javascript" src="selectivizr-min.js"></script><![endif]-->
+<script>
 
+<% for (Order o:Orderlist){%>
 
+<%if(o.getOrder_status().equals("已签收")){ %>
+									function Receipt<%=o.getUuid() %>() {
+									consle.log("MDZZ");
+									}
+								<%}else{ %>
+									function Receipt<%=o.getUuid() %>() {
+											var ca = document.getElementById("from<%=o.getUuid() %>");
+											ca.action = "/shopping/ReceiptServlet";
+											ca.submit();
+									}
+								<%} %>
+
+	
+<%}%>
+</script>
 	</head>
 	<body >
 		<!-- 头部 -->
@@ -191,8 +208,12 @@ html>body td {
 							<th scope="col" abbr="Dual 2.5">
 								下单时间
 							</th>
+							<th scope="col" abbr="Dual 2.5">
+								操作
+							</th>
 						</tr>
 						<%for(Order item:Orderlist){ %>
+						<form id="from<%=item.getUuid() %>" method="post" action="" >
 							<tr>
 								<td>
 									<%=item.getOrder_id() %>
@@ -214,7 +235,16 @@ html>body td {
 								<td>  
 									<%=item.getOrder_date() %>
 								</td>
+								<td>
+								<input  type="hidden" name="uuid" value="<%= item.getUuid() %>">
+								<%if(item.getOrder_status().equals("已签收")){ %>
+									<input  type="button" disabled="disabled" value="确认收货 " onclick="Receipt<%= item.getUuid()%>()">
+								<%}else{ %>
+									<input  type="button"  value="确认收货 " onclick="Receipt<%= item.getUuid()%>()">
+								<%} %>
+								</td>
 							</tr>
+							</form>
 						<%} %>
 					</table>
 			<br>

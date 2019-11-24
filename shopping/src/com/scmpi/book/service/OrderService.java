@@ -8,5 +8,6 @@ public interface OrderService {
 	public Order createOrder(Collection<OrderItem> items,User u) throws Exception;	//创建一个订单但是不插入数据库
 	public void creatInsert(Order o) throws Exception;	//接受一个已创建好的订单并插入数据库
 	public void updateIntegral(Order o,User u) throws Exception;	//修改积分
+	public void updateStatus(Order o,String status) throws Exception;	//修改订单状态
 
 }
