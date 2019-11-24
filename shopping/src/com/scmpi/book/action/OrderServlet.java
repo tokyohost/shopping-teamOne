@@ -46,7 +46,19 @@ public class OrderServlet extends HttpServlet {
 			oservice.createOrder(items, u);	//仅尝试创建订单
 //			oservice.insertOrder(items, u);
 			o = oservice.getOrder(u);//获取订单对象，判断是否够购买，余额不够无法购买则返回error.jsp
-			if(o.getTotal_amount() < u.getBalance()){
+			//计算折扣
+			float discountAmount = o.getTotal_amount()*(Float.valueOf(u.getDiscount()) /100);
+			o.setTotal_amount(discountAmount);
+			o.setOrder_status("已提交订单，折扣为"+(u.getDiscount()) /10 +"折");
+			
+			//判断是否提交空订单
+			if(o.getItems().isEmpty() && o.getTotal_amount() == 0.0){
+				ErrorMsg em = new ErrorMsg();
+				em.setMsg("请检查订单是否为空！不允许提交空订单~");
+				em.setFoxurl("/BackIndexServlet");//跳转首页
+				session.setAttribute("ErrorMsg", em);
+				req.getRequestDispatcher("/error.jsp").forward(req,res);
+			}else if(o.getTotal_amount() < u.getBalance()){
 				oservice.creatInsert(o);			//插入订单到数据库
 				oservice.updateIntegral(o, u);		//更新积分
 				UserService updateUser = new UserServiceImpl();
