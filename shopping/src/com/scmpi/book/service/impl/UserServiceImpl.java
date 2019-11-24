@@ -44,5 +44,19 @@ public class UserServiceImpl implements UserService {
 		
 		return u;
 	}
+	@Override
+	public int getUserCount() throws Exception {
+		// TODO 自动生成的方法存根
+		//获取总用户数量
+		int count =0;
+		String sql = "select count(*)Alluser from `user`;";
+		
+		ResultSet rs = DBUtil.queryData(sql);
+		
+		while(rs.next()){
+			count= rs.getInt("Alluser");
+		}
+		return count;
+	}
 
 }

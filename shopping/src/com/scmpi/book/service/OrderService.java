@@ -10,4 +10,4 @@ public interface OrderService {
 	public void updateIntegral(Order o,User u) throws Exception;	//修改积分
 	public void updateStatus(Order o,String status) throws Exception;	//修改订单状态
 
-}
+} 

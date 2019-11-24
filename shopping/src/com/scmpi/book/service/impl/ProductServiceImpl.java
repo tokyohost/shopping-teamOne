@@ -7,6 +7,7 @@ import com.scmpi.book.dao.impl.ProductDaoImpl;
 import com.scmpi.book.entity.Product;
 import com.scmpi.book.entity.ProductType;
 import com.scmpi.book.service.ProductService;
+import com.scmpi.book.util.DBUtil;
 
 public class ProductServiceImpl implements ProductService {
     private ProductDao dao=new ProductDaoImpl() ;
@@ -33,9 +34,21 @@ public class ProductServiceImpl implements ProductService {
 		return dao.queryByName(name);
 	}
 
-	public void updateProduct(double cost, String desc, String name)throws Exception {
+	public void updateProduct(Product p)throws Exception {
 		// TODO Auto-generated method stub
-
+		//更新商品信息
+		String sql ="UPDATE `product_item` SET `pname` = "
+				+ "'"+p.getPname()+"', `pclassifyid` ="
+				+ p.getPclassifyid()+", `pdate` = "
+				+ "'"+p.getPdate()+"', `Suppliers` = "
+				+ "'"+p.getSuppliers()+"', `pnumber` = "
+				+ p.getPnumber()+", `price` = "
+				+ p.getPrice()+", `descw` = "
+				+ "'"+p.getDescw()+"', `img` = '"
+				+p.getImg()+"' WHERE `pid` = "+p.getPid()+";";
+		
+		DBUtil.Update(sql);
+		
 	}
 
 	public List<ProductType> getProductTypes() throws Exception {
@@ -47,5 +60,6 @@ public class ProductServiceImpl implements ProductService {
 		
 		return dao.queryPdtsById(typeid);
 	}
+
 
 }
