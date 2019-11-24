@@ -56,13 +56,16 @@ html>body td {
 		<div id="topNav">
 			<ul>
 				<li class="welcome">
-					您好${user.uname}，欢迎光临网上显卡系统！请
+					您好${user.uname}，欢迎光临网上显卡系统！
 				</li>
 				<li>
 					<a href="<%=path%>/cart.jsp">[查购物车]</a>
 				</li>
 				<li>
 					<a href="<%=path%>/order.jsp">[去购物车结算]</a>
+				</li>
+				<li>
+					<a href="<%=path%>/OrderShowServlet">[查询订单]</a>
 				</li>
 				<li>
 					<a href="#">[积分:${user.integral }]</a>

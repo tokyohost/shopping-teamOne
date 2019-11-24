@@ -69,16 +69,8 @@
 		<div id="topNav">
 			<ul>
 				<li class="welcome">
-					您好${user.uname}，欢迎光临网上书店系统！请
+					您好${user.uname}，欢迎光临网上显卡系统！
 				</li>
-				<!--  
-				<li>
-					<a href="<%=path%>/login.jsp">[登陆]</a>
-				</li>
-				<li>
-				    <a href="<%=path%>/register.jsp">[免费注册]</a>
-				</li>
-				-->
 				<li>
 					<a href="<%=path%>/cart.jsp">[查购物车]</a>
 				</li>
@@ -93,6 +85,9 @@
 				</li>
 				<li>
 					<a href="#">[余额:${user.balance }]</a>
+				</li>
+				<li>
+					<a href="<%=path%>/BackIndexServlet">[返回主页]</a>
 				</li>
 			</ul>
 		</div>
