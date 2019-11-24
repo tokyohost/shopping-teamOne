@@ -106,4 +106,12 @@
         <servlet-name>BackIndexServlet</servlet-name>
         <url-pattern>/BackIndexServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ReceiptServlet</servlet-name>
+        <servlet-class>com.scmpi.book.action.ReceiptServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReceiptServlet</servlet-name>
+        <url-pattern>/ReceiptServlet</url-pattern>
+    </servlet-mapping>
 </web-app>
