@@ -63,7 +63,7 @@ public class OrderServiceImpl implements OrderService {
 				sum+=oi.getOrder_subtotal();	//¼ÆËã×Ü¼Û
 				ois.add(oi);
 			}
-			SimpleDateFormat sf=new SimpleDateFormat("yyyy-mm-dd  HH:mm:ss");
+			SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
 		    Date d=new Date();
 		    String str=sf.format(d);
 			o.setOrder_date(str);;
