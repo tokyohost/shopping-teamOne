@@ -1,6 +1,13 @@
 package com.scmpi.book.entity;
 import java.util.*;
 
+import com.scmpi.book.service.CartService;
+import com.scmpi.book.service.ProductService;
+import com.scmpi.book.service.UserService;
+import com.scmpi.book.service.impl.CartServiceImpl;
+import com.scmpi.book.service.impl.ProductServiceImpl;
+import com.scmpi.book.service.impl.UserServiceImpl;
+
 public class Cart {  
 	Map<Integer,OrderItem> map=new HashMap<Integer,OrderItem>();
 	private float total_amount;	//总价
@@ -37,6 +44,44 @@ public class Cart {
 			map.put(pi, oi);
 		}
 	}
+	/**
+	 * 
+	 * 
+	 * @author lsyil 额外创建一个类添加从数据库查询到的商品
+	 * @throws Exception 
+	 * 
+	 * 
+	 */
+	
+	public void addItemByDatabase(List<Product> plist,User u) throws Exception{
+		
+		CartService ca = new CartServiceImpl();
+		ProductService ps = new ProductServiceImpl();
+		Product selectp;
+		
+		for(Product p:plist){
+			if(map.containsKey(p.getPid())){
+				OrderItem oim = map.get(p.getPid());
+				oim.setOrder_num(oim.getOrder_num()+1);	//添加商品
+				oim.setOrder_subtotal((oim.getOrder_num()*p.getPrice())); //设置小计价格
+			}else{
+				
+				OrderItem oim = new OrderItem();
+				selectp = ps.queryById(p.getPid());
+				oim.setOrder_num(ca.queryCartById(u,p.getPid()).getPnum());
+				oim.setP(selectp);
+				oim.setOrder_subtotal(oim.getOrder_num()*p.getPrice());//设置小计价格
+				map.put(p.getPid(), oim);
+			}
+			
+		}
+		
+		
+		
+	}
+	
+	
+	
 	/**
 	 * @description 修改集合map里面的orderItem的数量 
 	 * @version 1.0

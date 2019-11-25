@@ -10,7 +10,10 @@ import javax.servlet.http.HttpSession;
 
 import com.scmpi.book.entity.Cart;
 import com.scmpi.book.entity.OrderItem;
+import com.scmpi.book.entity.User;
+import com.scmpi.book.service.CartService;
 import com.scmpi.book.service.ProductService;
+import com.scmpi.book.service.impl.CartServiceImpl;
 import com.scmpi.book.service.impl.ProductServiceImpl;
 
 public class ModifyServlet extends HttpServlet {
@@ -28,6 +31,10 @@ public class ModifyServlet extends HttpServlet {
 		String[] num = req.getParameterValues("pnum");
 		try {
 			HttpSession session = req.getSession(true);
+			
+			User u = (User) session.getAttribute("user");
+			
+			
 			Cart c = (Cart) session.getAttribute("cart");
 			ProductService ps = new ProductServiceImpl();
 			for (int i = 0; i < num.length; i++) {
@@ -38,6 +45,12 @@ public class ModifyServlet extends HttpServlet {
 				//tmd简直是屎山，可读性极差！！！！
 				c.modifyNumber(oi);
 			}
+			//接下来对数据库操作
+			CartService ca = new CartServiceImpl();
+			for (int i =0 ;i<num.length;i++){
+				ca.updateCart(Integer.valueOf(str[i].trim()),Integer.parseInt(num[i].trim()),u);
+			}
+			
 			req.getRequestDispatcher("/cart.jsp").forward(req, res);
 		} catch (Exception e) {
               e.printStackTrace();

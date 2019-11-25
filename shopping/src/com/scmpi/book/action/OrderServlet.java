@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.*;
 
 import com.scmpi.book.entity.*;
+import com.scmpi.book.service.CartService;
 import com.scmpi.book.service.OrderService;
 import com.scmpi.book.service.UserService;
+import com.scmpi.book.service.impl.CartServiceImpl;
 import com.scmpi.book.service.impl.OrderServiceImpl;
 import com.scmpi.book.service.impl.UserServiceImpl;
 
@@ -63,6 +65,10 @@ public class OrderServlet extends HttpServlet {
 				oservice.updateIntegral(o, u);		//更新积分
 				UserService updateUser = new UserServiceImpl();
 				session.setAttribute("user",updateUser.getUser(u.getUid()));	//更新用户数据
+				
+				//删除购物车表信息
+				CartService ca = new CartServiceImpl();
+				ca.deleteAll(u);
 				
 				
 				req.getRequestDispatcher("/ok.jsp").forward(req,res);

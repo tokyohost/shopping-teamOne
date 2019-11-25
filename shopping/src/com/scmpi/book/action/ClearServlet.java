@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.scmpi.book.entity.Cart;
+import com.scmpi.book.entity.User;
+import com.scmpi.book.service.CartService;
+import com.scmpi.book.service.impl.CartServiceImpl;
 
 public class ClearServlet extends HttpServlet {
 
@@ -19,7 +22,17 @@ public class ClearServlet extends HttpServlet {
 		res.setContentType("text/html");
 		HttpSession session=req.getSession(true);
 		Cart c=(Cart)session.getAttribute("cart");
+		User u = (User)session.getAttribute("user");
+		
 		c.clear();
+		
+		CartService ca = new CartServiceImpl();
+		try {
+			ca.deleteAll(u);
+		} catch (Exception e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
 		req.getRequestDispatcher("/cart.jsp").forward(req, res);
 	}
     
