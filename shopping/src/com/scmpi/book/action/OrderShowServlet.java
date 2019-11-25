@@ -55,8 +55,6 @@ public class OrderShowServlet extends HttpServlet {
 		req.getRequestDispatcher("/ordershow.jsp").forward(req, res);
 		
 		
-		
-		
 	}
 
 }

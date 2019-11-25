@@ -153,7 +153,7 @@ html>body td {
 					您好${user.uname}，欢迎光临网上显卡系统！
 				</li>
 				<li>
-					<a href="<%=path%>/cart.jsp">[查购物车]</a>
+					<a href="<%=path%>/QueryCartServlet">[查购物车]</a>
 				</li>
 				<li>
 					<a href="<%=path%>/order.jsp">[去购物车结算]</a>

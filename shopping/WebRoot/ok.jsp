@@ -2,8 +2,8 @@
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+	+ request.getServerName() + ":" + request.getServerPort()
+	+ path + "/";
 %>
 <!DOCTYPE>
 <html lang="en">
@@ -59,7 +59,7 @@ html>body td {
 					您好${user.uname}，欢迎光临网上显卡系统！
 				</li>
 				<li>
-					<a href="<%=path%>/cart.jsp">[查购物车]</a>
+					<a href="<%=path%>/QueryCartServlet">[查购物车]</a>
 				</li>
 				<li>
 					<a href="<%=path%>/order.jsp">[去购物车结算]</a>
@@ -85,9 +85,9 @@ html>body td {
 		<div id="showdata">
 			下订单成功！
            <%
-            Cart c=(Cart)session.getAttribute("cart");
-		       c.clear();
-            %>
+			Cart c=(Cart)session.getAttribute("cart");
+				       c.clear();
+		%>
 		</div>
 		
 	</body>
