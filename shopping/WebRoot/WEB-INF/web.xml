@@ -134,11 +134,6 @@
     <servlet-name>QueryCartServlet</servlet-name>
     <servlet-class>com.scmpi.book.action.QueryCartServlet</servlet-class>
   </servlet>
-
-
-
-
-
     <servlet-mapping>
         <servlet-name>ReceiptServlet</servlet-name>
         <url-pattern>/ReceiptServlet</url-pattern>
