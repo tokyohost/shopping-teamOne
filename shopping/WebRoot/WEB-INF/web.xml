@@ -152,7 +152,6 @@
     <servlet-name>SearchProductServlet</servlet-name>
     <servlet-class>com.scmpi.book.admin.SearchProductServlet</servlet-class>
   </servlet>
-
     <servlet-mapping>
         <servlet-name>ReceiptServlet</servlet-name>
         <url-pattern>/ReceiptServlet</url-pattern>
