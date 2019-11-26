@@ -5,6 +5,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 	List<Product> plist =(List<Product>) session.getAttribute("plist");
+	List<ProductType> ptype =(List<ProductType>) session.getAttribute("ptype");
 %>
 <!DOCTYPE>
 <html lang="en">
@@ -118,6 +119,8 @@ th.nobg {
 	
 	}
 	<%for(Product pitem:plist){ %>
+	
+		
 	function changep<%=pitem.getPid() %>(){
 		var ca = document.getElementById("pid<%=pitem.getPid() %>");
 		ca.action = "/shopping/servlet/ChangeProductServlet";
@@ -126,11 +129,17 @@ th.nobg {
 	}
 	function deletep<%=pitem.getPid() %>(){
 		var ca = document.getElementById("pid<%=pitem.getPid() %>");
-		ca.action = "/shopping/servlet/ChangeProductServlet";
+		ca.action = "/shopping/servlet/DeleteProductServlet";
 		ca.submit();
 	
 	}
 	<%}%>
+	
+	function addNewProduct(obj) {
+    	var ca = document.getElementById("addNew");
+		ca.action = "/shopping/servlet/AddNewProductServlet";
+		ca.submit();
+	}
 
 </script>
 	</head>
@@ -189,7 +198,7 @@ th.nobg {
 								商品名称
 							</th>
 							<th scope="col" abbr="Dual 2">
-								商品归属ID
+								商品归属
 							</th>
 							<th scope="col" abbr="Dual 2.5">
 								商品生产日期
@@ -225,7 +234,15 @@ th.nobg {
 									<input type="text" name="pname" value="<%= item.getPname()%>">
 								</td>
 								<td>
-									<input type="number" name="pclassifyid" value="<%=item.getPclassifyid() %>" style="width:40px;">
+									<select name="pclassifyid">        <!--下拉列表框-->
+										<%for (ProductType pt:ptype){ %>
+										<%if(Integer.valueOf(item.getPclassifyid())==pt.getCid()){ %>
+											<option value="<%= pt.getCid()%>" selected="selected"><%=pt.getcName() %></option>
+										<%}else{ %>
+											<option value="<%= pt.getCid()%>"><%=pt.getcName() %></option>
+										<%} %>
+										<%} %>
+									</select>
 								</td>
 								<td>
 									<input type="datetime" name="pdate" value="<%=item.getPdate() %>" style="width:80px;">
@@ -246,6 +263,7 @@ th.nobg {
 									<input type="text" name="img" value="<%=item.getImg() %>" style="width:80px;">
 								</td>
 								<td style="width:100px;">
+								<%if( item.getIs_delete() == 0 ){%>
 								<div style="width:45px;height:100%;float:left;">
 								
  								<input  type="button"  value="提交修改" style="float:left;" onclick="changep<%=item.getPid() %>()" >
@@ -253,15 +271,62 @@ th.nobg {
 								<div style="width:45px;height:100%;float:right;">
 								<input type="button" value="删除商品" style="float:right;" onclick="deletep<%=item.getPid() %>()">
 								</div>
+								<%}else{ %>
+								<div style="width:45px;height:100%;float:left;">
 								
+ 								<input  type="button" disabled="disabled"  value="提交修改" style="float:left;" onclick="changep<%=item.getPid() %>()" >
+								</div>
+								<div style="width:45px;height:100%;float:right;">
+								<input type="button" value="已删除" disabled="disabled" style="float:right;" onclick="deletep<%=item.getPid() %>()">
+								</div>
+								<%} %>
 								</td>
 							</tr>
 							</form>
 							<%} %>
+							<form id="addNew" action="" method="post">
+							<tr>
+								<td>
+									
+									新商品*
+								</td>
+								<td>
+									<input type="text" name="pname" value=""><span style="color:red">*</span>
+								</td>
+								<td>
+								<select name="pclassifyid">        <!--下拉列表框-->
+								<%for (ProductType pt:ptype){ %>
+									<option value="<%= pt.getCid()%>"><%=pt.getcName() %></option>
+								<%} %>
+								</select>
+								</td>
+								<td>
+									<input type="datetime" name="pdate" value="" style="width:80px;"><span style="color:red">*</span>
+								</td>
+								<td> 
+									<input type="text" name="suppliers" value="" style="width:80px;"><span style="color:red">*</span>
+								</td>
+								<td> 
+									<input type="text" name="descw" value="" style="width:80px;"><span style="color:red">*</span>
+								</td>
+								<td>
+									<input type="number" name="pnumber" step="1"  style="width:40px;" value="0"><span style="color:red">*</span>
+								</td>
+								<td>
+									<input type="number" name="price" step="0.01"  style="width:65px; "  value="0"><span style="color:red">*</span>
+								</td>
+								<td>
+									<input type="text" name="img" value="" style="width:80px;"><span style="color:red">*</span>
+								</td>
+								<td style="width:100px;">
+								<input type="button" value="添加商品" onclick="addNewProduct()">
+								</td>
+							</tr>
+							</form>
 					</table>
 					<div style="width:100%;height:100px;margin-left:40px;margin-right:40px;margin-top:100px;">
 					
-					 <input type="button" value="添加商品">
+					 
 					 <input type="text" name="qureyProduct" value="请输入查询的商品名字" style="margin-left:30px;">
  					 <input type="button" value="查询">
 					 </div>

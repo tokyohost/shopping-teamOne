@@ -35,7 +35,16 @@ public class PageServlet extends HttpServlet {
 		{
 			try {
 				ptList = pservice.getProductTypes();
-				proList = pservice.queryAll();
+				List<Product> ListCache;
+				ListCache = pservice.queryAll();
+				
+				//删除查询结果中is_delete属性为1的商品
+				for(Product p:ListCache){
+					if(p.getIs_delete() == 1 || p.getPnumber() <= 0){
+						continue;
+					}
+					proList.add(p);
+				}
 
 			} catch (Exception e) {
 				e.printStackTrace();
