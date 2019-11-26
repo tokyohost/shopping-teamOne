@@ -18,6 +18,17 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	public void insert(Product p) throws Exception {
+		String sql = "INSERT INTO `product_item`( `pname`, `pclassifyid`, `pdate`, `Suppliers`, `pnumber`, `price`, `descw`, `img`, `is_delete`) VALUES ( "
+				+ "'"+p.getPname()+"', "
+				+ ""+p.getPclassifyid()+", "
+				+ "'"+p.getPdate()+"', "
+				+ "'"+p.getSuppliers()+"', "
+				+ ""+p.getPnumber()+", "
+				+ p.getPrice()+", "
+				+ "'"+p.getDescw()+" ', "
+				+ "'"+p.getImg()+"', "
+				+ "0);";
+		DBUtil.Update(sql);
 
 	}
 
@@ -40,6 +51,7 @@ public class ProductDaoImpl implements ProductDao {
 				p.setSuppliers(rs.getString("Suppliers"));
 				p.setPnumber(rs.getInt("pnumber"));
 				p.setPrice(rs.getFloat("price"));
+				p.setIs_delete(rs.getInt("is_delete"));
 				list.add(p);
 			}
 			return list;
@@ -68,6 +80,7 @@ public class ProductDaoImpl implements ProductDao {
 				p.setSuppliers(rs.getString("Suppliers"));
 				p.setPnumber(rs.getInt("pnumber"));
 				p.setPrice(rs.getFloat("price"));
+				p.setIs_delete(rs.getInt("is_delete"));
 			}
 			return p;
 		} catch (Exception e) {
@@ -94,6 +107,7 @@ public class ProductDaoImpl implements ProductDao {
 				p.setSuppliers(rs.getString("Suppliers"));
 				p.setPnumber(rs.getInt("pnumber"));
 				p.setPrice(rs.getFloat("price"));
+				p.setIs_delete(rs.getInt("is_delete"));
 			}
 			return p;
 		} catch (Exception e) {
@@ -149,6 +163,7 @@ public class ProductDaoImpl implements ProductDao {
 				p.setSuppliers(rs.getString("Suppliers"));
 				p.setPnumber(rs.getInt("pnumber"));
 				p.setPrice(rs.getFloat("price"));
+				p.setIs_delete(rs.getInt("is_delete"));
 				list.add(p); 
 			}
 			return list;

@@ -14,10 +14,20 @@ public class Product implements Serializable {
 	private String suppliers;	//供应商
 	private  int pnumber;	//数量
 	private String descw;	//描述
+	private int is_delete;//删除信息
 	
 	private String img;
 	// 关系属性
 	private Set<OrderItem> items;
+
+	
+	public int getIs_delete() {
+		return is_delete;
+	}
+
+	public void setIs_delete(int is_delete) {
+		this.is_delete = is_delete;
+	}
 
 	public Set<OrderItem> getItems() {
 		return items;

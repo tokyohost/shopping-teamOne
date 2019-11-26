@@ -13,6 +13,15 @@ public class ProductServiceImpl implements ProductService {
     private ProductDao dao=new ProductDaoImpl() ;
 	public void deleteProduct(Integer id) throws Exception{
 		// TODO Auto-generated method stub
+		//删除商品信息
+		/**
+		 * 不直接删除，将表中字段is_delete 值修改；0 = 未删除、1 = 删除
+		 * 
+		 */
+		ProductService ps = new ProductServiceImpl();
+		String sql= "UPDATE `product_item` SET `is_delete` = 1 WHERE `pid` = "+id+";";
+		DBUtil.Update(sql);
+		
 
 	}
 

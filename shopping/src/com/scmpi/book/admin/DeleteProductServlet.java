@@ -2,7 +2,6 @@ package com.scmpi.book.admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,14 +11,13 @@ import javax.servlet.http.HttpSession;
 
 import com.scmpi.book.entity.ErrorMsg;
 import com.scmpi.book.entity.Product;
-import com.scmpi.book.entity.ProductType;
 import com.scmpi.book.service.ProductService;
 import com.scmpi.book.service.impl.ProductServiceImpl;
 
-public class ChangeProductServlet extends HttpServlet {
+public class DeleteProductServlet extends HttpServlet {
 
 	/*
-	 * 后台商品信息修改
+	 * 后台商品信息删除
 	 * 
 	 */
 	
@@ -47,15 +45,13 @@ public class ChangeProductServlet extends HttpServlet {
 		p.setImg(req.getParameter("img"));
 		
 		
-		
-		
 		try {
-			ps.updateProduct(p);
+			ps.deleteProduct(p.getPid());	//删除商品信息
 		} catch (Exception e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 			ErrorMsg em = new ErrorMsg();
-			em.setMsg("修改失败");
+			em.setMsg("删除失败");
 			em.setFoxurl("/shopping/servlet/ProductAdminServlet");
 			session.setAttribute("ErrorMsg", em);
 			req.getRequestDispatcher("/shopping/error.jsp").forward(req, res);
@@ -69,5 +65,4 @@ public class ChangeProductServlet extends HttpServlet {
 		
 		
 	}
-
 }
