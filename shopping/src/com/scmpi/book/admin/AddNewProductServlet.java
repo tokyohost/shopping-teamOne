@@ -69,9 +69,9 @@ public class AddNewProductServlet extends HttpServlet {
 //			e.printStackTrace();
 			ErrorMsg em = new ErrorMsg();
 			em.setMsg("新增失败，请检查输入是否正确！");
-			em.setFoxurl("/shopping/servlet/ProductAdminServlet");
+			em.setFoxurl("/servlet/ProductAdminServlet");
 			session.setAttribute("ErrorMsg", em);
-			req.getRequestDispatcher("/shopping/error.jsp").forward(req, res);
+			req.getRequestDispatcher("/error.jsp").forward(req, res);
 		}
 		
 		

@@ -56,9 +56,9 @@ public class ChangeProductServlet extends HttpServlet {
 			e.printStackTrace();
 			ErrorMsg em = new ErrorMsg();
 			em.setMsg("ÐÞ¸ÄÊ§°Ü");
-			em.setFoxurl("/shopping/servlet/ProductAdminServlet");
+			em.setFoxurl("/servlet/ProductAdminServlet");
 			session.setAttribute("ErrorMsg", em);
-			req.getRequestDispatcher("/shopping/error.jsp").forward(req, res);
+			req.getRequestDispatcher("/error.jsp").forward(req, res);
 		}
 		
 		

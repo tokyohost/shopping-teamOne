@@ -30,27 +30,26 @@ public class LoginServlet extends HttpServlet {
         ips=DBUtil.class.getResourceAsStream("DBConfig.properties");
         Properties prop=new Properties();
 		prop.load(ips);
-		if(name.equals(prop.getProperty("AdminUserName")) && password.equals(prop.getProperty("AdminUserPasswd"))){
-			
-			
-			req.getRequestDispatcher("/servlet/UserAdminServlet").forward(req,res);
-		}else{
-				 try{
+		 try{
+			if(name.equals(prop.getProperty("AdminUserName")) && password.equals(prop.getProperty("AdminUserPasswd"))){
+				
+				req.getRequestDispatcher("/servlet/UserAdminServlet").forward(req,res);
+			}else{
+				
 	        	User u=uservice.login(name, password);
-	        	
-	        	if(u ==null){
-	        		throw new Exception("can not find user or passwd not mach");
+		        	if(u ==null){
+		        		throw new Exception("can not find user or passwd not mach");
+		        	}
+			        	session.setAttribute("user", u);
+			        	//查询得到所有图书信息
+			        	Cart c=new Cart();//购物车
+			        	session.setAttribute("cart", c);
+			        	req.getRequestDispatcher("/servlet/PageServlet").forward(req,res);
 	        	}
-	        	session.setAttribute("user", u);
-	        	//查询得到所有图书信息
-	        	Cart c=new Cart();//购物车
-	        	session.setAttribute("cart", c);
-	        	req.getRequestDispatcher("/servlet/PageServlet").forward(req,res);
-	        }catch(Exception e){
-	        	 //e.printStackTrace();
-	        
-	           req.getRequestDispatcher("/login.jsp").forward(req, res);	
-	        }
+		 }catch(Exception e){
+        	 //e.printStackTrace();
+        
+           req.getRequestDispatcher("/login.jsp").forward(req, res);	
 		}
 		
         
