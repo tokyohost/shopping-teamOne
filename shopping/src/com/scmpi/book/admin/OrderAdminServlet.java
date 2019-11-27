@@ -49,11 +49,14 @@ public class OrderAdminServlet extends HttpServlet {
 		try {
 			//获取所有订单
 			oList = od.queryAllOrder();
+			//获取订单数量
+			int orderNum = oList.size();
 			
 			//查询所有用户信息
 			List<User> ulist = os.queryAllUser();	
 			session.setAttribute("ulist", ulist);
 			session.setAttribute("olist", oList);
+			session.setAttribute("orderNum", orderNum);
 		} catch (Exception e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

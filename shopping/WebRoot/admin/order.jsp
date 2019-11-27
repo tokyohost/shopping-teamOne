@@ -6,6 +6,7 @@
 			+ path + "/";
 	List<Order> olist =(List<Order>) session.getAttribute("olist");
 	List<User> ulist =(List<User>) session.getAttribute("ulist");
+	Integer orderNum = (Integer) session.getAttribute("orderNum");
 %>
 <!DOCTYPE>
 <html lang="en">
@@ -261,8 +262,8 @@ th.nobg {
 					</table>
 					
 					<div style="width:100%;height:100px;margin-left:40px;margin-right:40px;margin-top:100px;">
-					<h3 style="margin-bottom:20px;">当前订单共*项</h3>
-					 <form id="ProductSearch" action="" method="post" >
+					<h3 style="margin-bottom:20px;">当前订单共<%=orderNum %>项</h3>
+					 <form id="OrderSearch" action="" method="post" >
 					 <input type="text" name="qureyKey" value="" placeholder="输入用户名" style="margin-left:0px;">
  					 <input type="button" value="查询" onclick="search()">
  					 </form>
