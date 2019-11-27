@@ -11,18 +11,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.scmpi.book.dao.OrderDao;
 import com.scmpi.book.dao.ProductDao;
+import com.scmpi.book.dao.impl.OrderDaoImpl;
 import com.scmpi.book.dao.impl.ProductDaoImpl;
 import com.scmpi.book.entity.ErrorMsg;
+import com.scmpi.book.entity.Order;
 import com.scmpi.book.entity.Product;
 import com.scmpi.book.entity.ProductType;
+import com.scmpi.book.entity.User;
 import com.scmpi.book.service.ProductService;
+import com.scmpi.book.service.UserService;
 import com.scmpi.book.service.impl.ProductServiceImpl;
+import com.scmpi.book.service.impl.UserServiceImpl;
 
-public class SearchProductServlet extends HttpServlet {
+public class SearchOrderServlet extends HttpServlet {
 
 	/**
-	 * åå°å•†å“æœç´¢
+	 * ºóÌ¨¶©µ¥ËÑË÷
 	 * 
 	 */
 	
@@ -39,44 +45,54 @@ public class SearchProductServlet extends HttpServlet {
 		ProductService ps = new ProductServiceImpl();
 		try {
 			String keyName = req.getParameter("qureyKey");
+			
 		
 			if(keyName == ""){
 				
 				ErrorMsg em = new ErrorMsg();
-				em.setMsg("æŸ¥è¯¢å¤±è´¥ï¼Œè¯·æ£€æŸ¥è¾“å…¥æ˜¯å¦æ­£ç¡®ï¼");
-				em.setFoxurl("/servlet/ProductAdminServlet");
+				em.setMsg("²éÑ¯Ê§°Ü£¬Çë¼ì²éÊäÈëÊÇ·ñÕıÈ·£¡");
+				em.setFoxurl("/servlet/OrderAdminServlet");
 				session.setAttribute("ErrorMsg", em);
 				req.getRequestDispatcher("/error.jsp").forward(req, res);
 			}else{
-				ProductDao pd = new ProductDaoImpl();
+				//²éÑ¯ËùÓĞÓÃ»§
+				UserService us = new UserServiceImpl();
+				List<User> ulist = us.queryAllUser();
 				
-				List<Product> pList= pd.queryAll();	//æŸ¥è¯¢æ‰€æœ‰çš„å•†å“
-				List<Product> sList = new ArrayList<Product>();
-				for(Product p:pList){
-					if(p.getPname().indexOf(keyName) != -1){	//åˆ¤æ–­æ˜¯å¦å­˜åœ¨ç”¨æˆ·æŸ¥è¯¢çš„å…³é”®å­—
-						sList.add(p);
+				OrderDao od = new OrderDaoImpl();
+				List<Order> oList = od.queryAllOrder();	//²éÑ¯ËùÓĞ¶©µ¥
+				List<Order> sList = new ArrayList<Order>();
+				for(Order o:oList){
+					for(User u:ulist){
+						if(o.getUser_id() == u.getUid()){
+							if(u.getUname().indexOf(keyName) != -1){	//ÅĞ¶ÏÊÇ·ñ´æÔÚÓÃ»§²éÑ¯µÄ¹Ø¼ü×Ö
+								sList.add(o);
+							}
+						}
 					}
+					
 					
 				}
 				
-				//è·å–å•†å“ç±»å‹
-				List<ProductType> ptype = ps.getProductTypes();
-				session.setAttribute("plist", sList);
-				session.setAttribute("ptype", ptype);
+				
+				session.setAttribute("olist", sList);
+				session.setAttribute("orderNum", sList.size());
+				session.setAttribute("ulist", ulist);
 
-				//é¡µé¢è·³è½¬
-				req.getRequestDispatcher("/admin/product.jsp").forward(req, res);
+				//Ò³ÃæÌø×ª
+				req.getRequestDispatcher("/admin/order.jsp").forward(req, res);
 				
 			}
 			
 		} catch (Exception e) {
-			// TODO è‡ªåŠ¨ç”Ÿæˆçš„ catch å—
+			// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
 //			e.printStackTrace();
 			ErrorMsg em = new ErrorMsg();
-			em.setMsg("æŸ¥è¯¢å¤±è´¥ï¼Œè¯·æ£€æŸ¥è¾“å…¥æ˜¯å¦æ­£ç¡®ï¼");
-			em.setFoxurl("/servlet/ProductAdminServlet");
+			em.setMsg("²éÑ¯Ê§°Ü£¬Çë¼ì²éÊäÈëÊÇ·ñÕıÈ·£¡");
+			em.setFoxurl("/servlet/OrderAdminServlet");
 			session.setAttribute("ErrorMsg", em);
 			req.getRequestDispatcher("/error.jsp").forward(req, res);
 		}
 	}
+
 }

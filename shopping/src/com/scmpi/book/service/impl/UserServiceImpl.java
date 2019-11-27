@@ -1,6 +1,8 @@
 package com.scmpi.book.service.impl;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.scmpi.book.dao.*;
 import com.scmpi.book.dao.impl.*;
@@ -57,6 +59,21 @@ public class UserServiceImpl implements UserService {
 			count= rs.getInt("Alluser");
 		}
 		return count;
+	}
+	@Override
+	public List<User> queryAllUser() throws Exception {
+		// TODO 自动生成的方法存根
+		//查询所有用户信息
+		List<User> uList = new ArrayList<User>();
+		User u;
+		String sql = "select * from `user`;";
+		ResultSet rs = DBUtil.queryData(sql);
+		while(rs.next()){
+			u = new User(rs.getInt("uid"), rs.getString("uname"), rs.getString("upasswd"), rs.getString("uemail"), rs.getString("usex"), rs.getString("birthday"), rs.getString("uphone"), rs.getString("uaddress"), rs.getFloat("balance"), rs.getInt("discount"), rs.getInt("integral"));
+			uList.add(u);
+		}
+		
+		return uList;
 	}
 
 }

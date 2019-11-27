@@ -125,8 +125,8 @@ html>body td {
 			</div>
 			<div style="float:right;width:85%;background-color:#fff;height:1000px;">
 				<!-- 右边详情页 -->
-				
-				<h2>当前系统注册用户共<%= userCount %>人</h2>
+				<h1 style="margin-left:40px;margin-top:40px;margin-bottom:20px;font-size:24px;">用户管理页面</h1>
+				<h2 style="margin-left:40px;">当前系统注册用户共<%= userCount %>人</h2>
 				
 			</div>
 		

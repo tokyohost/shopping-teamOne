@@ -11,10 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.scmpi.book.dao.OrderDao;
 import com.scmpi.book.dao.impl.OrderDaoImpl;
 import com.scmpi.book.entity.Order;
 import com.scmpi.book.entity.OrderItem;
 import com.scmpi.book.entity.User;
+import com.scmpi.book.service.OrderService;
+import com.scmpi.book.service.impl.OrderServiceImpl;
 
 /**
  * Servlet implementation class OrderShowServlet
@@ -32,11 +35,11 @@ public class OrderShowServlet extends HttpServlet {
 		
 		//获取用户信息
 		User u = (User) session.getAttribute("user");	
-		
+		OrderDao os = new OrderDaoImpl();
 		
 		System.out.println("开始查询订单信息");
 		try {
-			List<Order> orderlist = OrderDaoImpl.queryOrder(u);
+			List<Order> orderlist = os.queryOrder(u);
 			session.setAttribute("Orderlist", orderlist);
 		} catch (ClassNotFoundException e) {
 			// TODO 自动生成的 catch 块
@@ -46,6 +49,9 @@ public class OrderShowServlet extends HttpServlet {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 			
+		} catch (Exception e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
 		}
 		
 		

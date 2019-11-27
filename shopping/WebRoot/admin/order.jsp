@@ -4,8 +4,9 @@
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
-	List<Product> plist =(List<Product>) session.getAttribute("plist");
-	List<ProductType> ptype =(List<ProductType>) session.getAttribute("ptype");
+	List<Order> olist =(List<Order>) session.getAttribute("olist");
+	List<User> ulist =(List<User>) session.getAttribute("ulist");
+	Integer orderNum = (Integer) session.getAttribute("orderNum");
 %>
 <!DOCTYPE>
 <html lang="en">
@@ -118,31 +119,20 @@ th.nobg {
 		ca.submit();
 	
 	}
-	<%for(Product pitem:plist){ %>
+	<%for(Order oitem:olist){ %>
 	
 		
-	function changep<%=pitem.getPid() %>(){
-		var ca = document.getElementById("pid<%=pitem.getPid() %>");
-		ca.action = "/shopping/servlet/ChangeProductServlet";
-		ca.submit();
-	
-	}
-	function deletep<%=pitem.getPid() %>(){
-		var ca = document.getElementById("pid<%=pitem.getPid() %>");
-		ca.action = "/shopping/servlet/DeleteProductServlet";
+	function changeo<%=oitem.getUuid() %>(){
+		var ca = document.getElementById("oid<%=oitem.getUuid() %>");
+		ca.action = "/shopping/servlet/ChangeOrderServlet";
 		ca.submit();
 	
 	}
 	<%}%>
 	
-	function addNewProduct(obj) {
-    	var ca = document.getElementById("addNew");
-		ca.action = "/shopping/servlet/AddNewProductServlet";
-		ca.submit();
-	}
 	function search() {
-		var ca = document.getElementById("ProductSearch");
-		ca.action = "/shopping/servlet/SearchProductServlet";
+		var ca = document.getElementById("OrderSearch");
+		ca.action = "/shopping/servlet/SearchOrderServlet";
 		ca.submit();
 		
 	}
@@ -193,151 +183,91 @@ th.nobg {
 			<div style="float:right;width:85%;background-color:#fff;height:1000px;">
 				<!-- 右边详情页 -->
 				
-				<h1 style="margin-left:40px;margin-top:40px;margin-bottom:20px;font-size:24px;">商品管理页面</h1>
+				<h1 style="margin-left:40px;margin-top:40px;margin-bottom:20px;font-size:24px;">订单管理页面</h1>
 				<table id="mytable" cellspacing="0"
 						summary="The technical specifications of the Apple PowerMac G5 series">
 						<tr>
 						<th scope="col" abbr="Dual 1.8">
-								商品id
+								订单id
 							</th>
 							<th scope="col" abbr="Dual 1.8">
-								商品名称
+								用户名
+							</th>
+							<th scope="col" abbr="Dual 2.5">
+								订单内容
 							</th>
 							<th scope="col" abbr="Dual 2">
-								商品归属
+								总金额
 							</th>
 							<th scope="col" abbr="Dual 2.5">
-								商品生产日期
+								下单时间
 							</th>
 							<th scope="col" abbr="Dual 2.5">
-								商品供应商
+								订单状态
 							</th>
 							<th scope="col" abbr="Dual 2.5">
-								商品简介
+								提交操作
 							</th>
-							<th scope="col" abbr="Dual 2.5">
-								商品数量
-							</th>
-							<th scope="col" abbr="Dual 2.5">
-								商品价格
-							</th>
-							<th scope="col" abbr="Dual 2.5">
-								商品图片地址
-							</th>
-							<th scope="col" abbr="Dual 2.5">
-								商品操作
-							</th>
+							
+							
 						</tr>
 						
-						<%for(Product item:plist){ %>
-						<form id="pid<%=item.getPid() %>" method="post" action="" >
+						<%for(Order item:olist){ %>
+						<form id="oid<%=item.getUuid() %>" method="post" action="" >
 							<tr>
 								<td>
-									<%= item.getPid() %>
-									<input type="hidden" name="pid" value="<%= item.getPid()%>">
+									<%=item.getOrder_id() %>
+									<input type="hidden" name="uuid" value="<%= item.getUuid()%>">
 								</td>
 								<td>
-									<input type="text" name="pname" value="<%= item.getPname()%>">
+								<%for(User u:ulist){ %>
+								<%if(u.getUid() == item.getUser_id()){ %>
+									<%= u.getUname()%>
+								<%} %>
+								<%} %>
 								</td>
 								<td>
-									<select name="pclassifyid">        <!--下拉列表框-->
-										<%for (ProductType pt:ptype){ %>
-										<%if(Integer.valueOf(item.getPclassifyid())==pt.getCid()){ %>
-											<option value="<%= pt.getCid()%>" selected="selected"><%=pt.getcName() %></option>
-										<%}else{ %>
-											<option value="<%= pt.getCid()%>"><%=pt.getcName() %></option>
-										<%} %>
-										<%} %>
-									</select>
+								<%for(OrderItem oi:item.getItems()){ %>
+									<%=oi.getP().getPname()%><span style="color:red">  x <%=oi.getOrder_num() %></span><br>
+								<%} %>
+								</td>
+								
+								<td>
+									<input type="number" step="0.001"  name="total_amount" value="<%=item.getTotal_amount()%>" style="width:80px;">
 								</td>
 								<td>
-									<input type="datetime" name="pdate" value="<%=item.getPdate() %>" style="width:80px;">
+									<%=item.getOrder_date() %>
 								</td>
 								<td> 
-									<input type="text" name="suppliers" value="<%=item.getSuppliers() %> " style="width:80px;">
-								</td>
-								<td> 
-									<input type="text" name="descw" value="<%=item.getDescw() %> " style="width:80px;">
-								</td>
-								<td>
-									<input type="number" name="pnumber" step="1" value="<%=item.getPnumber() %>" style="width:40px;">
-								</td>
-								<td>
-									<input type="number" name="price" step="0.01" value="<%=item.getPrice() %>" style="width:65px;">
-								</td>
-								<td>
-									<input type="text" name="img" value="<%=item.getImg() %>" style="width:80px;">
+								
+								<select name="order_status">        <!--下拉列表框-->
+								<option value="<%= item.getOrder_status()%>"><%= item.getOrder_status()%></option>
+								<option value="已提交订单">已提交订单</option>
+									<option value="未处理">未处理</option>
+									<option value="配送">配送</option>
+									<option value="发货">发货</option>
+									<option value="已签收">已签收</option>
+								</select>
 								</td>
 								<td style="width:100px;">
-								<%if( item.getIs_delete() == 0 ){%>
-								<div style="width:45px;height:100%;float:left;">
+								<div style="width:90px;height:100%;float:left;">
 								
- 								<input  type="button"  value="提交修改" style="float:left;" onclick="changep<%=item.getPid() %>()" >
+ 								<input  type="button"  value="提交修改" style="float:left;" onclick="changeo<%=item.getUuid() %>()" >
 								</div>
-								<div style="width:45px;height:100%;float:right;">
-								<input type="button" value="删除商品" style="float:right;" onclick="deletep<%=item.getPid() %>()">
-								</div>
-								<%}else{ %>
-								<div style="width:45px;height:100%;float:left;">
-								
- 								<input  type="button" disabled="disabled"  value="提交修改" style="float:left;" onclick="changep<%=item.getPid() %>()" >
-								</div>
-								<div style="width:45px;height:100%;float:right;">
-								<input type="button" value="已删除" disabled="disabled" style="float:right;" onclick="deletep<%=item.getPid() %>()">
-								</div>
-								<%} %>
 								</td>
 							</tr>
 							</form>
 							<%} %>
-							<form id="addNew" action="" method="post">
-							<tr>
-								<td>
-									
-									新商品*
-								</td>
-								<td>
-									<input type="text" name="pname" value=""><span style="color:red">*</span>
-								</td>
-								<td>
-								<select name="pclassifyid">        <!--下拉列表框-->
-								<%for (ProductType pt:ptype){ %>
-									<option value="<%= pt.getCid()%>"><%=pt.getcName() %></option>
-								<%} %>
-								</select>
-								</td>
-								<td>
-									<input type="datetime" name="pdate" value="" style="width:80px;"><span style="color:red">*</span>
-								</td>
-								<td> 
-									<input type="text" name="suppliers" value="" style="width:80px;"><span style="color:red">*</span>
-								</td>
-								<td> 
-									<input type="text" name="descw" value="" style="width:80px;"><span style="color:red">*</span>
-								</td>
-								<td>
-									<input type="number" name="pnumber" step="1"  style="width:40px;" value="0"><span style="color:red">*</span>
-								</td>
-								<td>
-									<input type="number" name="price" step="0.01"  style="width:65px; "  value="0"><span style="color:red">*</span>
-								</td>
-								<td>
-									<input type="text" name="img" value="" style="width:80px;"><span style="color:red">*</span>
-								</td>
-								<td style="width:100px;">
-								<input type="button" value="添加商品" onclick="addNewProduct()">
-								</td>
-							</tr>
-							</form>
+							
 					</table>
+					
 					<div style="width:100%;height:100px;margin-left:40px;margin-right:40px;margin-top:100px;">
-					 <form id="ProductSearch" action="" method="post" >
-					 <input type="text" name="qureyKey" value="" placeholder="输入商品名字" style="margin-left:0px;">
-
+					<h3 style="margin-bottom:20px;">当前订单共<%=orderNum %>项</h3>
+					 <form id="OrderSearch" action="" method="post" >
+					 <input type="text" name="qureyKey" value="" placeholder="输入用户名" style="margin-left:0px;">
  					 <input type="button" value="查询" onclick="search()">
  					 </form>
 					 </div>
-					
 				
 			</div>
 		

@@ -1,6 +1,7 @@
 package com.scmpi.book.action;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -21,8 +22,19 @@ public class ProductTypeServlet extends HttpServlet {
 		ProductService pservice=new ProductServiceImpl();
 		try {
 			List<Product> products=pservice.queryPdtsById(Integer.parseInt(ptid));
+			//剔除属性为1的商品
+			
+			List<Product> pList  = new ArrayList<Product>();
+			
+			for(Product p:products){
+				if(p.getIs_delete() != 1 && p.getPnumber() > 0){
+					pList.add(p);
+				}
+				
+			}
+			
 			HttpSession session = request.getSession(true);
-			session.setAttribute("products", products);
+			session.setAttribute("products", pList);
 			session.setAttribute("condtion", "condtion");
 			request.getRequestDispatcher("/servlet/PageServlet").forward(request, response);
 		}  catch (Exception e) {

@@ -19,7 +19,7 @@ import com.scmpi.book.service.impl.ProductServiceImpl;
 public class AddNewProductServlet extends HttpServlet {
 
 	/**
-	 * ºóÌ¨ÉÌÆ·Ìí¼Ó
+	 * åå°å•†å“æ·»åŠ 
 	 * 
 	 */
 	
@@ -50,7 +50,7 @@ public class AddNewProductServlet extends HttpServlet {
 			if(p.getPname() == "" || p.getImg()== "" || p.getPdate()== "" || p.getDescw()== "" || p.getPnumber() == 0 || p.getPrice() == 0){
 				
 				ErrorMsg em = new ErrorMsg();
-				em.setMsg("ĞÂÔöÊ§°Ü£¬Çë¼ì²éÊäÈëÊÇ·ñÕıÈ·£¡");
+				em.setMsg("æ–°å¢å¤±è´¥ï¼Œè¯·æ£€æŸ¥è¾“å…¥æ˜¯å¦æ­£ç¡®ï¼");
 				em.setFoxurl("/servlet/ProductAdminServlet");
 				session.setAttribute("ErrorMsg", em);
 				req.getRequestDispatcher("/error.jsp").forward(req, res);
@@ -59,19 +59,20 @@ public class AddNewProductServlet extends HttpServlet {
 				
 				pd.insert(p);
 
-				//Ò³ÃæÌø×ª
+				//é¡µé¢è·³è½¬
 				req.getRequestDispatcher("/servlet/ProductAdminServlet").forward(req, res);
 				
 			}
 			
 		} catch (Exception e) {
-			// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+			// TODO è‡ªåŠ¨ç”Ÿæˆçš„ catch å—
 //			e.printStackTrace();
 			ErrorMsg em = new ErrorMsg();
-			em.setMsg("ĞÂÔöÊ§°Ü£¬Çë¼ì²éÊäÈëÊÇ·ñÕıÈ·£¡");
-			em.setFoxurl("/shopping/servlet/ProductAdminServlet");
+			em.setMsg("æ–°å¢å¤±è´¥ï¼Œè¯·æ£€æŸ¥è¾“å…¥æ˜¯å¦æ­£ç¡®ï¼");
+			em.setFoxurl("/servlet/ProductAdminServlet");
 			session.setAttribute("ErrorMsg", em);
-			req.getRequestDispatcher("/shopping/error.jsp").forward(req, res);
+			req.getRequestDispatcher("/error.jsp").forward(req, res);
+
 		}
 		
 		
