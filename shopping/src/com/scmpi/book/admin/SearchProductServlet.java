@@ -22,7 +22,7 @@ import com.scmpi.book.service.impl.ProductServiceImpl;
 public class SearchProductServlet extends HttpServlet {
 
 	/**
-	 * ºóÌ¨ÉÌÆ·ËÑË÷
+	 * åå°å•†å“æœç´¢
 	 * 
 	 */
 	
@@ -43,37 +43,37 @@ public class SearchProductServlet extends HttpServlet {
 			if(keyName == ""){
 				
 				ErrorMsg em = new ErrorMsg();
-				em.setMsg("²éÑ¯Ê§°Ü£¬Çë¼ì²éÊäÈëÊÇ·ñÕıÈ·£¡");
+				em.setMsg("æŸ¥è¯¢å¤±è´¥ï¼Œè¯·æ£€æŸ¥è¾“å…¥æ˜¯å¦æ­£ç¡®ï¼");
 				em.setFoxurl("/servlet/ProductAdminServlet");
 				session.setAttribute("ErrorMsg", em);
 				req.getRequestDispatcher("/error.jsp").forward(req, res);
 			}else{
 				ProductDao pd = new ProductDaoImpl();
 				
-				List<Product> pList= pd.queryAll();	//²éÑ¯ËùÓĞµÄÉÌÆ·
+				List<Product> pList= pd.queryAll();	//æŸ¥è¯¢æ‰€æœ‰çš„å•†å“
 				List<Product> sList = new ArrayList<Product>();
 				for(Product p:pList){
-					if(p.getPname().indexOf(keyName) != -1){	//ÅĞ¶ÏÊÇ·ñ´æÔÚÓÃ»§²éÑ¯µÄ¹Ø¼ü×Ö
+					if(p.getPname().indexOf(keyName) != -1){	//åˆ¤æ–­æ˜¯å¦å­˜åœ¨ç”¨æˆ·æŸ¥è¯¢çš„å…³é”®å­—
 						sList.add(p);
 					}
 					
 				}
 				
-				//»ñÈ¡ÉÌÆ·ÀàĞÍ
+				//è·å–å•†å“ç±»å‹
 				List<ProductType> ptype = ps.getProductTypes();
 				session.setAttribute("plist", sList);
 				session.setAttribute("ptype", ptype);
 
-				//Ò³ÃæÌø×ª
+				//é¡µé¢è·³è½¬
 				req.getRequestDispatcher("/admin/product.jsp").forward(req, res);
 				
 			}
 			
 		} catch (Exception e) {
-			// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+			// TODO è‡ªåŠ¨ç”Ÿæˆçš„ catch å—
 //			e.printStackTrace();
 			ErrorMsg em = new ErrorMsg();
-			em.setMsg("²éÑ¯Ê§°Ü£¬Çë¼ì²éÊäÈëÊÇ·ñÕıÈ·£¡");
+			em.setMsg("æŸ¥è¯¢å¤±è´¥ï¼Œè¯·æ£€æŸ¥è¾“å…¥æ˜¯å¦æ­£ç¡®ï¼");
 			em.setFoxurl("/servlet/ProductAdminServlet");
 			session.setAttribute("ErrorMsg", em);
 			req.getRequestDispatcher("/error.jsp").forward(req, res);

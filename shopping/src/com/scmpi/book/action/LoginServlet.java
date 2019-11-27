@@ -22,10 +22,10 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String name = req.getParameter("userName");
 		String password = req.getParameter("userPassword");
-		//´´½¨session±£´æÓÃ»§ĞÅÏ¢
+		//åˆ›å»ºsessionä¿å­˜ç”¨æˆ·ä¿¡æ¯
     	HttpSession session=req.getSession(true);
         UserService uservice= new UserServiceImpl();
-        //ÅĞ¶ÏÊÇ·ñ¹ÜÀíÔ±ÓÃ»§
+        //åˆ¤æ–­æ˜¯å¦ç®¡ç†å‘˜ç”¨æˆ·
         InputStream ips=null;
         ips=DBUtil.class.getResourceAsStream("DBConfig.properties");
         Properties prop=new Properties();
@@ -41,8 +41,8 @@ public class LoginServlet extends HttpServlet {
 		        		throw new Exception("can not find user or passwd not mach");
 		        	}
 			        	session.setAttribute("user", u);
-			        	//²éÑ¯µÃµ½ËùÓĞÍ¼ÊéĞÅÏ¢
-			        	Cart c=new Cart();//¹ºÎï³µ
+			        	//æŸ¥è¯¢å¾—åˆ°æ‰€æœ‰å›¾ä¹¦ä¿¡æ¯
+			        	Cart c=new Cart();//è´­ç‰©è½¦
 			        	session.setAttribute("cart", c);
 			        	req.getRequestDispatcher("/servlet/PageServlet").forward(req,res);
 	        	}
@@ -51,9 +51,6 @@ public class LoginServlet extends HttpServlet {
         
            req.getRequestDispatcher("/login.jsp").forward(req, res);	
 		}
-		
-        
-       
 	}
 
 }

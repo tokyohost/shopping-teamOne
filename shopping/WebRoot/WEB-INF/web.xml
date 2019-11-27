@@ -171,9 +171,6 @@
     <servlet-class>com.scmpi.book.admin.SearchOrderServlet</servlet-class>
   </servlet>
 
-
-
-
     <servlet-mapping>
         <servlet-name>ReceiptServlet</servlet-name>
         <url-pattern>/ReceiptServlet</url-pattern>
